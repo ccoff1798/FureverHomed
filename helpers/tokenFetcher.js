@@ -1,9 +1,12 @@
 const axios = require('axios');
 require('dotenv').config();
+const token = ''
 
 class TokenFetcher {
   constructor() {
     console.log('token working');
+  }
+    fetcher(){
     const clientId = process.env.API_KEY;
     const clientSecret = process.env.API_SECRET;
 
@@ -18,6 +21,7 @@ class TokenFetcher {
       .then((response) => {
         if (response.status === 200) {
           const newAccessToken = response.data.access_token;
+          token =newAccessToken
           console.log(newAccessToken);
         } else {
           console.error(`Failed to refresh access token. Status code: ${response.status}`);
@@ -28,4 +32,4 @@ class TokenFetcher {
       });
   }
 }
-module.exports = TokenFetcher;
+module.exports = TokenFetcher, token;
