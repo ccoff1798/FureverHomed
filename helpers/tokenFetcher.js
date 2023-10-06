@@ -1,31 +1,30 @@
-const axios = require('axios');
-require('dotenv').config();
-
+//tokenFetcher.js
+require('dotenv').config()
 class TokenFetcher {
-  constructor() {
-    console.log('token working');
-    const clientId = process.env.API_KEY;
-    const clientSecret = process.env.API_SECRET;
+    constructor() {
+        console.log('token working');
 
-    const tokenUrl = "https://api.petfinder.com/v2/oauth2/token";
+    }
 
-    const data = new URLSearchParams();
-    data.append("grant_type", "client_credentials");
-    data.append("client_id", clientId);
-    data.append("client_secret", clientSecret);
+    async fetcher() {
+        const clientId = process.env.API_KEY;
+        const clientSecret = process.env.API_SECRET
+        const params = new URLSearchParams();
 
-    axios.post(tokenUrl, data)
-      .then((response) => {
-        if (response.status === 200) {
-          const newAccessToken = response.data.access_token;
-          console.log(newAccessToken);
-        } else {
-          console.error(`Failed to refresh access token. Status code: ${response.status}`);
-        }
-      })
-      .catch((error) => {
-        console.error("An error occurred while refreshing the token:", error);
-      });
-  }
+        params.append("grant_type", "client_credentials");
+        params.append("client_id", clientId);
+        params.append("client_secret", clientSecret);
+
+        const petfinderRes = await fetch(
+            "https://api.petfinder.com/v2/oauth2/token",
+            {
+                method: "POST",
+                body: params,
+            }
+        );
+        const data = await petfinderRes.json();
+        // console.log(data.access_token)
+        return data.access_token
+    }
 }
 module.exports = TokenFetcher;
