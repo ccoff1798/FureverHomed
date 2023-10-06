@@ -4,21 +4,15 @@ async function fetchData() {
 
     try {
         const tokenFetcherInstance = new TokenFetcher();
-        const tokenFetched = tokenFetcherInstance.token
+        const tokenFetched = await tokenFetcherInstance.fetcher()
         const url = 'https://api.petfinder.com/v2/animals/'
-        const urlHeaders = `'Authorization': 'Bearer ${tokenFetched}'`
-        console.log(token)
+        console.log(urlHeaders)
         const fetchRequest = await fetch(url, {
             headers: {
-                urlHeaders
+                'Authorization': 'Bearer ' + tokenFetched
             }
         })
-        // .then(function (response) {
-        //     return response.json();
-        // })
-        // .then(function (data) {
-        //     console.log(data)
-        // });
+
         const data = await fetchRequest.json()
         console.log(data)
 
