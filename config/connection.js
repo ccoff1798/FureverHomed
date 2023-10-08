@@ -1,3 +1,5 @@
+// Sequelize allows for interaction with various relational databases without the need to change the models controllers views and routes as would be required when working with mysql2.
+
 const Sequelize = require('sequelize');
 require('dotenv').config();
 
@@ -12,7 +14,7 @@ if (process.env.JAWSDB_URL) {
     process.env.DB_PASSWORD,
     {
       host: process.env.HOST,
-      dialect: 'mysql',
+      dialect: 'mysql', // could change dialect: to sqLite, postgresql, or other relational databases.
       port: 3306
     }
   );
