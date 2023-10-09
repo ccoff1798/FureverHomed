@@ -27,7 +27,8 @@ async function fetchData(location) {
             animalArray.push(JSON.stringify(animalObject))
 
         }
-        console.log(animalArray)
+        // console.log(animalArray)
+        return animalArray
         
 
     }
