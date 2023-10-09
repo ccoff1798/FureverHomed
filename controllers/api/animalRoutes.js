@@ -1,16 +1,20 @@
 // defined route with login data returned from front end as router.post('/login') async (req, res) => {}
 const router = require('express').Router();
-const { Animals } = require('../../models');
+const { SavedAnimal } = require('../../models');
 
-
-
-router.get('/animals', async (req, res) => {
+router.post('/save-animal', async (req, res) => {
     try {
-        const animals = await Animals.findAll()
-        res.json(animals)
+        const savedAnimal = await SavedAnimal.create({
+            user_id: req.session.user_id,
+            animal_id: req.body.animal_id
+        })
+        res.json(savedAnimal)
     } catch (error) {
         res.status(500).json(error)
     }
-});
+})
+
+
+
 
 module.exports = router;

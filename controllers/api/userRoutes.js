@@ -1,8 +1,8 @@
-// defined route with login data returned from front end as router.importing from express allowing for router methods. router.post('/login') async (req, res) => {} required for the try {} await
+// defined route with login data returned from front end as router.post importing from express allowing for router methods. router.post('/login') async (req, res) => {} required for the try {} await
 const router = require('express').Router();
 // importing data from User.js and assigning it to table named "User" const {User}
 const { User } = require('../../models');
-// only 2 possibilities when this route is triggered the data coming in is req, or res is our data being returned to user. This route engages 
+// only 2 possibilities when this route is triggered the data coming in is req, res is data being returned to user. This route engages 
 router.post('/login', async (req, res) => {
   
   // Find the user User.findOne({{}}) who matches the posted e-mail address, this code is triggered automatically once the user inputs their user data that is sent as a req above. "User" is the name for the table in the database. method User.findone({where: {email: req.body.email}}) Select * from user where email = instead of req.body.email the actual value of email entered by user as seen in insomnia must be entered in that format via mysql to find data from user input on front end. The package installed as sequalize allows you to communicate with relational databases like mysql, postgersql, sqLite inside express.js package inside the node.js application. In terms of sequalize(library or package inside node.js or express.js within node.js, associated with package/s in package.json) "User" is known as the "Model" name not table. Otherwise "User" is known as the table name within the database user_db.

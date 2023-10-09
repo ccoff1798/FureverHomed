@@ -11,5 +11,11 @@ Animals.belongsToMany(User, {
     foreignKey: 'animal_id',
     onDelete: 'CASCADE'
 });
+SavedAnimal.belongsTo(User, {
+    foreignKey: 'user_id',
+})
+SavedAnimal.belongsTo(Animals, {
+    foreignKey: 'animal_id',
+})
 
 module.exports = { User, Animals, SavedAnimal };
