@@ -5,13 +5,26 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Furever Homed</title>
-  <link rel="stylesheet" type="text/css" href="/css/jass.css">
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
-  <script src="../../frontendlogic/handlebars.js"></script>
+  <link rel="stylesheet" type="text/css" href="/public/css/jass.css">
+  <link rel="stylesheet" type="text/css" href="/public/css/style.css">
+  
 </head>
 
 <body>
+  <script type="module" src="/public/frontendlogic/handlebars.js"></script>
   <script type="text/x-handlebars-template"></script>
+  <div class="context">
+    <h1>Animals:</h1>
+    <ul>
+      {{#each animalArray}}
+        <li>
+          <h2>ID: {{id}}</h2>
+          <p>Name: {{name}}</p>
+          <p>Type: {{type}}</p>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
   <header>
     <h1>Furever Homed</h1>
   </header>
@@ -27,9 +40,8 @@
     <aside>
       <h2>Enjoy the galleries!</h2>
     </aside>
-    <div class="gallery">
+      
       {{{body}}}
-    </div>
   </main>
   {{#if loggedIn}}
   <script src="/js/logout.js"></script>

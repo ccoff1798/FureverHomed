@@ -1,15 +1,17 @@
 const router = require('express').Router();
 const { User } = require('../models');
 const withAuth = require('../utils/auth');
-const HomePageLogic = require('../frontendlogic/homepage');
+const HomePageLogic = require('../public/frontendlogic/homepage');
 
 // Prevent non logged in users from viewing the homepage //withAuth
 router.get('/', async (req, res) => {
-//   try {
+//   try {\
   const homePageLogic = new HomePageLogic()
   const homePageFetcher = await homePageLogic.initializeFetcher
   homePageFetcher()
+  
   res.render('homepage')
+  
 
   
 //     const userData = await User.findAll({

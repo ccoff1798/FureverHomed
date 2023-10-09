@@ -1,4 +1,4 @@
-const fetchData= require('../helpers/testrun');
+const fetchData= require('../../helpers/testrun');
 const location = 'CO'//hardcoded location
 
 class HomepageLogic {
