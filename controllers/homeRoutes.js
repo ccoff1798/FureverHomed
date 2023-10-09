@@ -3,7 +3,7 @@ const { User } = require('../models');
 const withAuth = require('../utils/auth');
 
 // users not logged in will be sent to home page to login. 
-router.get('/', withAuth, async (req, res) => {
+router.get('/test', withAuth, async (req, res) => {
   try {
     const userData = await User.findAll({
       attributes: { exclude: ['password'] },
@@ -15,13 +15,18 @@ router.get('/', withAuth, async (req, res) => {
     res.render('homepage', {
       users,
       // Pass the logged in flag to the template
-      logged_in: req.session.logged_in,
+      loggedIn: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
+// landing page that does not require for anyone to be logged in
+router.get('/', (req,res)=> {
+  res.render("homepage", {
+    loggedIn: req.session.logged_in
+  })
+ })
 router.get('/login', (req, res) => {
   // If a session exists, redirect the request to the homepage
   if (req.session.logged_in) {
