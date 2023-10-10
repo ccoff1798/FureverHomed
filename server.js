@@ -30,14 +30,17 @@ const sess = {
 // app.use (session(sess)); using sess variable above with app.use() method to start the application with session defined above and to include middlewares below. Add express-session and store as Express.js middleware
 app.use(session(sess));
 
-app.engine('handlebars', hbs.engine);
+app.engine('handlebars', exphbs({
+  defaultLayout:'main'
+}));
 app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 //changed from true to false to take in info and send to next route
 // code below tells express to serve the static files html, css, and javascript from the 'public' folder.
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static('public'));
+// app.use(express.static(path.join(__dirname, 'public')));
 // telling app to use routes imported from 'controller' folder assigned on line 5
 app.use(routes);
 // code below is method from sequelize, force: false,...if force: is true tables in databases will be dropped and recreated everytime when this code runs causing app to run slower and wasting energy. sequelize method below makes sure databases are syncronized first before starting the application as defined at, 'http://localhost:3001/'
