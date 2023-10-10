@@ -30,7 +30,9 @@ const sess = {
 // app.use (session(sess)); using sess variable above with app.use() method to start the application with session defined above and to include middlewares below. Add express-session and store as Express.js middleware
 app.use(session(sess));
 
-app.engine('handlebars', hbs.engine);
+app.engine('handlebars', exphbs({
+  defaultLayout:'main'
+}));
 app.set('view engine', 'handlebars');
 
 app.use(express.json());

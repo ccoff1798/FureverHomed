@@ -1,51 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Furever Homed</title>
-  <link rel="stylesheet" type="text/css" href="/public/css/jass.css">
-  <link rel="stylesheet" type="text/css" href="/public/css/style.css">
-  
 </head>
-
 <body>
-  <script type="module" src="/public/frontendlogic/handlebars.js"></script>
-  <script type="text/x-handlebars-template"></script>
-  <div class="context">
-    <h1>Animals:</h1>
-    <ul>
-      {{#each animalArray}}
-        <li>
-          <h2>ID: {{id}}</h2>
-          <p>Name: {{name}}</p>
-          <p>Type: {{type}}</p>
-        </li>
-      {{/each}}
-    </ul>
-  </div>
   <header>
-    <h1>Furever Homed</h1>
+    <select name="Pick Animal" id="animal_selection">
+      <option value="dog">Dog</option>
+      <option value="cat">Cat</option>
+    </select>
   </header>
-  <nav>
-    <a href="/">Home</a>
-    {{#if loggedIn}}
-    <button id="logout" class="btn-no-style">Logout</button>
-    {{else}}
-    <a href="/login">Login</a>
-    {{/if}}
-  </nav>
   <main>
-    <aside>
-      <h2>Enjoy the galleries!</h2>
-    </aside>
-      
-      {{{body}}}
+  {{{body}}}
   </main>
-  {{#if loggedIn}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
 </body>
-
 </html>
