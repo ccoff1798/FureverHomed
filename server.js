@@ -36,7 +36,8 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
+//changed from true to false to take in info and send to next route
 // code below tells express to serve the static files html, css, and javascript from the 'public' folder.
 app.use('/public', express.static('public'));
 // app.use(express.static(path.join(__dirname, 'public')));
