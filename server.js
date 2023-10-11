@@ -1,3 +1,4 @@
+require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
@@ -6,6 +7,13 @@ const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 
 const sequelize = require('./config/connection');
+const Handlebars = require('handlebars');
+Handlebars.registerHelper('isEqual', function(value, testValue, options) {
+  if (value === testValue) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
 
 const Handlebars = require('handlebars');
 

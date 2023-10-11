@@ -1,8 +1,8 @@
 :root {
-    --primary: #389393;
+    --primary: #0e423e;
     --secondary: #f5a25d;
     --tertiary: #fa7f72;
-    --quatrinary: #6c6b67;
+    --quatrinary: #4e3963;
     --light: #ebebeb;
     --dark: #182c23;
     --error: rgb(228, 46, 1);
@@ -44,7 +44,10 @@
   nav {
     display: flex;
     background-color: var(--secondary);
+    overflow: hidden;
+    float: left;
   }
+
   
   .menu-container {
     display: flex;
@@ -99,6 +102,16 @@
   }
   
   /* CARDS */
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+
+
   .card {
     margin: 20px;
     flex: 0 1 300px;
@@ -161,6 +174,59 @@
     display: flex;
     flex-flow: column wrap;
     align-content: flex-start;
-    align-items: center;
+    align-items: block;
   }
+
+  #animal_selection {
+    float: center;
+    display: center;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    color: black;
+    background-color: lightgrey;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  
+  /* Style the sidebar - fixed full height */
+.sidebar {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 16px;
+}
+
+/* Style sidebar links */
+.sidebar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+}
+
+/* Style links on mouse-over */
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+/* Style the main content */
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  padding: 0px 10px;
+}
+
+/* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
   
