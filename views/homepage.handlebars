@@ -3,7 +3,11 @@
     <div>
     <ul class="cards">
     {{#each pets}}
-    <img src="{{this.imageUrl}}" alt="{{this.id}}" style="max-width:100%">
+    {{#isEqual this.imageUrl undefined}}
+    <img src="../public/images/placeholder.jpg" alt="Placeholder failed to load" width="256" height="256">
+    {{else}}
+    <img src="{{this.imageUrl}}" alt="placeholder" width="256" height="256">
+    {{/isEqual}}
     <li>{{this.id}}</li>
     <li>{{this.name}}</li>
     <li>{{this.type}}</li>
