@@ -15,7 +15,7 @@ Handlebars.registerHelper('isEqual', function(value, testValue, options) {
   return options.inverse(this);
 });
 
-const Handlebars = require('handlebars');
+
 
 Handlebars.registerHelper('isEqual', function(value, testValue, options) {
   if (value === testValue) {
