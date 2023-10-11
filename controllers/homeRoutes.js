@@ -64,6 +64,16 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/login', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  if (req.session.logged_in) {
+    res.redirect('/profile');
+    return;
+  }
+
+  res.render('login');
+});
+
 // //lisatest
 // // users not logged in will be sent to home page to login. 
 // router.get('/test', withAuth, async (req, res) => {
