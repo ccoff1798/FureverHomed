@@ -6,11 +6,15 @@ router.get('/all-animals', async (req, res) => {
     try {
         const animals = await Animals.findAll()
         // to test in insomnia use:
-        // res.json(animals) and comment out line 11-13
-        res.render('animals', {
+        // res.json(animals)
+        // and comment out line 11-13
+        // res.render('animals', {
+        //     animals
+        // })
+        // res.render() allows handlebars to get data from the connected file in the seeds 'animals-seeds.js' 
+        res.render('animals',{
             animals
         })
-        // res.render() allows handlebars to get data from the connected file in the seeds 'animals-seeds.js' 
     } catch (error) {
         res.status(500).json(error)
     }
