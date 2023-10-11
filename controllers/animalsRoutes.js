@@ -38,7 +38,7 @@ router.get('/saved-animals/:userId', async (req, res) => {
         const savedAnimals = userWithSavedAnimals.saved_animals.map(savedAnimal => (
             {
                 id: savedAnimal.id,
-                animal: savedAnimal.animal
+                animal: savedAnimal.animal.get({plain: true})
             }
         ))
         res.render('saved-animals', {
