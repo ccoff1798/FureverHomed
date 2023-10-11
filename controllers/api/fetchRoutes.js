@@ -1,11 +1,10 @@
 let type = "Dog"
-// GET https://api.petfinder.com/v2/types/{type}
+// GET https://api.petfinder.com/v2/types/${type}
 let breed = "French Bulldog"
 // GET https://api.petfinder.com/v2/types/${type}/breeds/${breed}
 let location = "Denver"
 // GET https://api.petfinder.com/v2/animals/locations/${location}
-let rescue = "DDFL"
-// GET https://api.petfinder.com/v2/organizations/${name}
+let rescue = "https://api.petfinder.com/v2/organizations/${name}"
 
 
 
@@ -16,7 +15,6 @@ async function fetchTypes() {
         const tokenFetcherInstance = new TokenFetcher();
         const tokenFetched = await tokenFetcherInstance.fetcher()
         const url = `https://api.petfinder.com/v2/types/${type}`
-        // ${breed}/${location}/${rescue}`
         console.log(url)
         const fetchRequest = await fetch(url, {
             headers: {
@@ -42,8 +40,8 @@ async function fetchBreeds() {
     try {
         const tokenFetcherInstance = new TokenFetcher();
         const tokenFetched = await tokenFetcherInstance.fetcher()
-        const url = `https://api.petfinder.com/v2/breeds/${breed}`
-        // ${breed}/${location}/${rescue}`
+        const url = `https://api.petfinder.com/v2/types/{type}/?breeds
+        ${breed}`
         console.log(url)
         const fetchRequest = await fetch(url, {
             headers: {
@@ -69,8 +67,8 @@ async function fetchLocation() {
     try {
         const tokenFetcherInstance = new TokenFetcher();
         const tokenFetched = await tokenFetcherInstance.fetcher()
-        const url = `https://api.petfinder.com/v2/locations/${location}`
-        // ${breed}/${location}/${rescue}`
+        const url = `https://api.petfinder.com/v2/animals/?locations/?${location}`
+        
         console.log(url)
         const fetchRequest = await fetch(url, {
             headers: {
@@ -99,8 +97,7 @@ async function fetchRescue() {
 try {
     const tokenFetcherInstance = new TokenFetcher();
     const tokenFetched = await tokenFetcherInstance.fetcher()
-    const url = `https://api.petfinder.com/v2/organizations/${rescue}}`
-    // ${breed}/${location}/${rescue}`
+
 
     console.log(url)
     const fetchRequest = await fetch(url, {
