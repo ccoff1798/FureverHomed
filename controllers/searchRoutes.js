@@ -12,20 +12,31 @@ router.get('/:id', async (req, res) => {
       console.log(`search route type ${type}`)
       const searchFetcher = await searchLogic.initializeFetcher(type);
       // console.log(type)
-      // console.log(typeof searchFetcher)
+      console.log(searchFetcher)
     //   const parsedArray = searchFetcher.map(item => JSON.parse(item));
   
       const pets = {};
       // console.log(`This is what I am console Logging${searchFetcher.animals}`)
-      console.log("searchFetcher:", searchFetcher);
       if (searchFetcher && searchFetcher.animals) {
-    
       for (let i = 0; i < searchFetcher.animals.length; i++) {
+        
+        let photos = searchFetcher.animals[i].primary_photo_cropped
+        if(photos == null || undefined){
+          photos = searchFetcher.animals[i].photos
+          if(photos.length == 0){
+            photos = "../public/images/placeholder.jpg"
+          }
+        }
+        else{
+         photos = searchFetcher.animals[i].primary_photo_cropped.full
+        }
+        console.log(photos)
           pets['pet' + i] = {
               id: searchFetcher.animals[i].id,
               name: searchFetcher.animals[i].name,
               type: searchFetcher.animals[i].type,
-              imageUrl: searchFetcher.animals[i].primary_photo_cropped 
+              description: searchFetcher.animals[i].description,
+              imageUrl: photos
           };
       }} else {
         console.error("searchFetcher or searchFetcher.animals is undefined or null");
