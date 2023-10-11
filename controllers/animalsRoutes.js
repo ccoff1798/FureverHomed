@@ -2,7 +2,6 @@
 const router = require('express').Router();
 const { User, Animals, SavedAnimal } = require('../models');
 
-
 router.get('/all-animals', async (req, res) => {
     try {
         const animals = await Animals.findAll()
