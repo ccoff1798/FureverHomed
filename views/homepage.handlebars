@@ -1,12 +1,13 @@
 <section>
     Check out these pets!
-    <ol>
-        
+    <div>
+    <ul class="cards">
     {{#each pets}}
-    <img src="{{this.imageUrl}}" alt="{{this.id}}">
+    <img src="{{this.imageUrl}}" alt="{{this.id}}" style="max-width:100%">
     <li>{{this.id}}</li>
     <li>{{this.name}}</li>
     <li>{{this.type}}</li>
     {{/each}}
-    </ol>
+    </ul>
+    </div>
 </section>

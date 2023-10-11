@@ -10,7 +10,7 @@ class HomepageLogic {
         try {
             const fetcher = await fetchData(location);//hardcoded location for testing
             console.log('fetchSuccess');
-            console.log(fetcher)
+            // console.log(fetcher)
             return fetcher;
         } catch (error) {
             console.log(error);
