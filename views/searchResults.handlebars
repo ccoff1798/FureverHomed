@@ -1,0 +1,17 @@
+<section>
+    Check out these pets!
+    <div>
+    <ul class="cards">
+    {{#each pets}}
+    {{#isEqual this.imageUrl null}}
+    <img src="../public/images/placeholder.jpg" alt="Placeholder failed to load" width="256" height="256">
+    {{else}}
+    <img src="{{this.imageUrl}}" alt="placeholder" width="256" height="256">
+    {{/isEqual}}
+    <li>{{this.id}}</li>
+    <li>{{this.name}}</li>
+    <li>{{this.type}}</li>
+    {{/each}}
+    </ul>
+    </div>
+</section>
