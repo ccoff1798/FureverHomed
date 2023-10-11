@@ -11,6 +11,7 @@ async function fetchData(location) {
             }
         })
         const animalArray = []
+        animalArray.length = 0
         const data = await fetchRequest.json()
         //pushing data into an array
         for(let i = 0; i < data.animals.length; i++){
@@ -27,7 +28,8 @@ async function fetchData(location) {
             animalArray.push(JSON.stringify(animalObject))
 
         }
-        console.log(animalArray)
+        // console.log(animalArray)
+        return animalArray
         
 
     }

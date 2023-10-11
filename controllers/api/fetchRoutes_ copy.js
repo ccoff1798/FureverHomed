@@ -1,4 +1,4 @@
-let type = "Dog"
+// let type = "Dog"
 // GET https://api.petfinder.com/v2/types/{type}
 let breed = "French Bulldog"
 // GET https://api.petfinder.com/v2/types/${type}/breeds/${breed}
@@ -9,27 +9,24 @@ let rescue = "DDFL"
 
 
 
-async function fetchTypes() {
+async function fetchTypes(type) {
     const TokenFetcher = require('../../helpers/tokenFetcher');
 
     try {
         const tokenFetcherInstance = new TokenFetcher();
         const tokenFetched = await tokenFetcherInstance.fetcher()
-        const url = `https://api.petfinder.com/v2/types/${type}`
+        console.log(tokenFetched)
+        //minor url change to fetch relevent data for front end
+        const url = `https://api.petfinder.com/v2/animals?type=${type}`
         // ${breed}/${location}/${rescue}`
         console.log(url)
-        const fetchRequest = await fetch(url, {
+        const fetchedData = await fetch(url, {
             headers: {
                 'Authorization': 'Bearer ' + tokenFetched
             }
-        })
-            .then(function (response) {
-                return response.json()
-            })
-            .then(function (data) {
-                // sortByBreed(data)
-                console.log(data)
-            })
+        }).then(response => response.json());
+        
+        return fetchedData;
 
     }
     catch (error) {
@@ -126,8 +123,4 @@ catch (error) {
 
 //     });
 
-
-fetchTypes()
-fetchBreeds()
-fetchLocation()
-fetchRescue()
+module.exports = fetchTypes

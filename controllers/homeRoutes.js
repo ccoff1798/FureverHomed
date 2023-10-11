@@ -1,24 +1,22 @@
 const router = require('express').Router();
 const { User } = require('../models');
 const withAuth = require('../utils/auth');
-const HomePageLogic = require('../frontendlogic/homepage');
+const HomePageLogic = require('../public/frontendlogic/homepage');
 
 // Prevent non logged in users from viewing the homepage //withAuth
-router.get('/', async (req, res) => {
+// router.get('/', withAuth, async (req, res) => {
 //   try {
-  const homePageLogic = new HomePageLogic()
-  const homePageFetcher = await homePageLogic.initializeFetcher
-  homePageFetcher()
-  res.render('homepage')
+//     const homePageLogic = new HomePageLogic();
+//     const homePageFetcher = await homePageLogic.initializeFetcher(); // Assuming this is a function
+//     homePageFetcher();
 
-  
 //     const userData = await User.findAll({
 //       attributes: { exclude: ['password'] },
 //       order: [['name', 'ASC']],
 //     });
-// // code below is getting user data from user logged in password is excluded above and assigned to variable 'users'
-//     const users = userData.map((project) => project.get({ plain: true }));
-// // this is rendering home page with user logged in data previously gotten above.
+
+//     const users = userData.map((user) => user.get({ plain: true }));
+
 //     res.render('homepage', {
 //       users,
 //       // Pass the logged in flag to the template
@@ -27,21 +25,43 @@ router.get('/', async (req, res) => {
 //   } catch (err) {
 //     res.status(500).json(err);
 //   }
-});
-// landing page that does not require for anyone to be logged in
-// router.get('/', (req,res)=> {
-//   res.render("homepage", {
-//     loggedIn: req.session.logged_in
-//   })
-//  })
-router.get('/login', (req, res) => {
-  // If a session exists, redirect the request to the homepage
-  if (req.session.logged_in) {
-    res.redirect('/');
-    return;
-  }
+// });
 
-  res.render('login');
+
+//CODY's HANDLEBARS ROUTES FOR HOMEPAGE
+// landing page that does not require for anyone to be logged in
+router.get('/', async (req, res) => {
+  const homePageLogic = new HomePageLogic();
+  
+  try {
+    const homePageFetcher = await homePageLogic.initializeFetcher();
+    
+    const parsedArray = homePageFetcher.map(item => JSON.parse(item));
+
+    const pets = {};
+
+    for (let i = 0; i < parsedArray.length; i++) {
+        pets['pet' + i] = {
+            id: parsedArray[i].id,
+            name: parsedArray[i].name,
+            type: parsedArray[i].type,
+            imageUrl: parsedArray[i].photo?.medium 
+        };
+    }
+    
+    console.log(pets);
+
+    
+
+    res.render("homepage", {
+      loggedIn: req.session.logged_in,
+      pets: pets
+    });
+  } catch (error) {
+    // Handle the error here
+    console.error("Error fetching data:", error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 // //lisatest
