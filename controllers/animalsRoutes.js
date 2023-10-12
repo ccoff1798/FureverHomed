@@ -4,16 +4,14 @@ const { User, Animals, SavedAnimal } = require('../models');
 
 router.get('/all-animals', async (req, res) => {
     try {
-        const animals = await Animals.findAll()
+        const animalsData = await Animals.findAll()
         // to test in insomnia use:
         // res.json(animals)
-        // and comment out line 11-13
-        // res.render('animals', {
-        //     animals
-        // })
-        // res.render() allows handlebars to get data from the connected file in the seeds 'animals-seeds.js' 
-        res.render('animals',{
+        // below is the correct format to implement handlebars to interact with data model and seeds allowing for get posts and delets. We can also allow for additional search paramaters only requiring adding a new route. 
+        const animals = animalsData.map(animal => animal.get({plain: true}))
+        res.render('animals', {
             animals
+        // {{animals.name}} or {{name}}
         })
     } catch (error) {
         res.status(500).json(error)
@@ -36,10 +34,11 @@ router.get('/saved-animals/:userId', async (req, res) => {
                 }
             ]
         })
+        console.log(userWithSavedAnimals)
         const savedAnimals = userWithSavedAnimals.saved_animals.map(savedAnimal => (
             {
                 id: savedAnimal.id,
-                animal: savedAnimal.animal
+                animal: savedAnimal.animal.get({plain: true})
             }
         ))
         res.render('saved-animals', {

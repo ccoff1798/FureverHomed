@@ -1,17 +1,7 @@
-<section>
-    Check out these pets!
-    <div>
-    <ul class="cards">
-    {{#each animals}}
-    {{!-- {{#isEqual this.imageUrl undefined}}
-    <img src="../public/images/placeholder.jpg" alt="Placeholder failed to load" width="256" height="256">
-    {{else}}
-    <img src="{{this.imageUrl}}" alt="placeholder" width="256" height="256">
-    {{/isEqual}} --}}
-    <li>{{id}}</li>
-    <li>{{name}}</li>
-    <li>{{type}}</li>
-    {{/each}}
-    </ul>
-    </div>
-</section>
+{{!-- this is how we can interact with the data in seeds using handlebars and we can add in saved animals using get and post routes. We can also allow for deleting by making routes for deleting. If we want to update search paramaters we only have to create a new route based on what additional information we will allow the user to search for.  --}}
+<h1>animalss</h1>
+{{#each animals}}
+<p>age: {{ this.age }}</p>
+<p>name: {{ this.name }}</p>
+<p>gender: {{ this.gender }}</p>
+{{/each}}
