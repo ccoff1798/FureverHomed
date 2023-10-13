@@ -4,8 +4,7 @@
     <option value="default">All animals</option>
    </select>
 <select name="breeds" id="breeds">
-    <option value="{{breed}}">{{breed}}</option>
-    <option value="default">All Floofs are Friends!</option>
+    <option value="default">Looking for a specific type of Floof?</option>
     {{#each breeds}}
     <option value="{{breed}}">{{breed}}</option>
     {{/each}}
@@ -35,9 +34,11 @@ function getOptions(){
     <div>
         <ul class="cards">
             {{#each pets}}
-            <button onclick="seeMore()" type="submit" value="{{id}}" id="see_more">Wanna see more about me?</button>
+            <button onclick="seeMore('{{id}}', event)" type="submit">Wanna see more about me?</button>
+
+
             {{#isEqual this.imageUrl null}}
-            <img src="https://c8.alamy.com/comp/EKC44N/placeholder-banner-dog-EKC44N.jpg" alt="Placeholder failed to load" width="256" height="256">
+            <img src="../public/images/placeholder.jpg" alt="Placeholder failed to load" width="256" height="256">
             {{else}}
             <img src="{{this.imageUrl}}" alt="placeholder" width="256" height="256">
             {{/isEqual}}
@@ -51,11 +52,11 @@ function getOptions(){
             {{/each}}
         </ul>
     </div>
-    <script>
-        function seeMore(){
-   snagId= document.querySelector('#see_more');
-   idValue = snagId.value
-   window.location.href = `/${idValue}`
-        }
+     <script>
+        function seeMore(petId, event){
+   event.stopPropagation();
+   window.location.href = `/${petId}`;
+   console.log(petId)
+}
     </script>
 </section>

@@ -34,6 +34,9 @@ function getOptions(){
     <div>
         <ul class="cards">
             {{#each pets}}
+            <button onclick="seeMore('{{id}}', event)" type="submit">Wanna see more about me?</button>
+
+
             {{#isEqual this.imageUrl null}}
             <img src="../public/images/placeholder.jpg" alt="Placeholder failed to load" width="256" height="256">
             {{else}}
@@ -49,4 +52,10 @@ function getOptions(){
             {{/each}}
         </ul>
     </div>
+     <script>
+        function seeMore(petId, event){
+   event.stopPropagation();
+   window.location.href = `/${petId}`;
+}
+    </script>
 </section>
