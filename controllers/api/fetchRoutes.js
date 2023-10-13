@@ -26,6 +26,34 @@ async function fetchTypes(type) {
         console.log(error)
     }
 };
+async function fetchBreeds(type) {
+    const TokenFetcher = require('../../helpers/tokenFetcher');
+
+    try {
+        const tokenFetcherInstance = new TokenFetcher();
+        const tokenFetched = await tokenFetcherInstance.fetcher()
+        const url = `https://api.petfinder.com/v2/types/${type}/breeds`
+        const fetchRequest = await fetch(url, {
+            headers: {
+                'Authorization': 'Bearer ' + tokenFetched
+            }
+        })
+            .then(function (response) {
+                return response.json()
+            })
+            // .then(function (data) {
+            //     // sortByBreed(data)
+            //     // console.log(data)
+            //     return data
+            // })
+            console.log(`fetch request is ${fetchRequest}`)
+            return fetchRequest
+    }
+    
+    catch (error) {
+        console.log(error)
+    }
+};
 
 async function fetchByBreeds(breed, size, age, gender, ) {
     const TokenFetcher = require('../../helpers/tokenFetcher');
@@ -119,17 +147,13 @@ async function fetchByAnimals(animalType) {
     try {
         const tokenFetcherInstance = new TokenFetcher();
         const tokenFetched = await tokenFetcherInstance.fetcher()
-        // console.log(tokenFetched)
-        //minor url change to fetch relevent data for front end
         const url = `https://api.petfinder.com/v2/animals?type=${animalType}`
-        // ${breed}/${location}/${rescue}`
         console.log(url)
         const fetchedData = await fetch(url, {
             headers: {
                 'Authorization': 'Bearer ' + tokenFetched
             }
         }).then(response => response.json());
-        // console.log(fetchedData)
         return fetchedData;
 
     }
@@ -138,7 +162,7 @@ async function fetchByAnimals(animalType) {
     }
 };
 
-module.exports = fetchByAnimals , fetchByBreeds
+module.exports = {fetchByAnimals , fetchByBreeds , fetchBreeds}
 // function sortByBreed(data)
 //     data.forEach(element => {
 
