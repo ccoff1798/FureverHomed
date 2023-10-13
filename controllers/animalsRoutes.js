@@ -4,6 +4,7 @@ const { User, Animals, SavedAnimal } = require('../models');
 
 router.get('/all-animals', async (req, res) => {
     try {
+
         const animalsData = await Animals.findAll()
         // to test in insomnia use:
         // res.json(animals)

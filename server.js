@@ -16,6 +16,15 @@ Handlebars.registerHelper('isEqual', function(value, testValue, options) {
   return options.inverse(this);
 });
 
+const Handlebars = require('handlebars');
+
+Handlebars.registerHelper('isEqual', function(value, testValue, options) {
+  if (value === testValue) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
 // Create a new sequelize store using the express-session package
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
