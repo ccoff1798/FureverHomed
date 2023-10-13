@@ -95,6 +95,7 @@ router.get('/:id', async (req, res) => {
     });
     if (created) {
       console.log('New animal was created!');
+      animal = created
     } else {
       console.log('Animal already exists in the database.');
     }

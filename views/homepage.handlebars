@@ -1,15 +1,8 @@
-<label for="breeds"> Looking for a specific type of Floof?</label>
-<select name="type" id="type">
+<label for="type"></label>
+<select name="type" id="type"Looking for a specific type of Floof?>
     <option value="{{type}}">{{type}}</option>
     <option value="default">All animals</option>
    </select>
-<select name="breeds" id="breeds">
-    <option value="default">Looking for a specific type of Floof?</option>
-    {{#each breeds}}
-    <option value="{{breed}}">{{breed}}</option>
-    {{/each}}
-
-</select>
 <button onclick="getOptions()">GO</button>
 <script type="text/javascript">
 function getOptions(){
