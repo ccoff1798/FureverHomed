@@ -1,0 +1,22 @@
+<section>
+{{#isEqual photo null}}
+    <img src="https://c8.alamy.com/comp/EKC44N/placeholder-banner-dog-EKC44N.jpg" alt="Placeholder failed to load" width="256" height="256">
+    {{else}}
+    <img src="{{photo}}" alt="placeholder">
+    {{/isEqual}}
+    {{#with animal.dataValues}}
+<p>Name: {{name}}</p>
+<p>Gender: {{gender}}</p>
+{{#isEqual breeds.mixed false}}
+<p>Breed:{{breeds.primary}}</p>
+{{else}}
+<p>Breed: Mixed breed</p>
+{{/isEqual}}
+{{#isEqual description null}}
+<p>Description: We are still learning about this little guy, description coming soon!</p>
+{{else}}
+<p>Description: {{description}}</p>
+{{/isEqual}}
+
+{{/with}}
+</section>

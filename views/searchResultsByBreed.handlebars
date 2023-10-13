@@ -37,7 +37,7 @@ function getOptions(){
             {{#each pets}}
             <button onclick="seeMore()" type="submit" value="{{id}}" id="see_more">Wanna see more about me?</button>
             {{#isEqual this.imageUrl null}}
-            <img src="../public/images/placeholder.jpg" alt="Placeholder failed to load" width="256" height="256">
+            <img src="https://c8.alamy.com/comp/EKC44N/placeholder-banner-dog-EKC44N.jpg" alt="Placeholder failed to load" width="256" height="256">
             {{else}}
             <img src="{{this.imageUrl}}" alt="placeholder" width="256" height="256">
             {{/isEqual}}
@@ -55,7 +55,7 @@ function getOptions(){
         function seeMore(){
    snagId= document.querySelector('#see_more');
    idValue = snagId.value
-   window.location.href = `/searchByID/${idValue}`
+   window.location.href = `/${idValue}`
         }
     </script>
 </section>

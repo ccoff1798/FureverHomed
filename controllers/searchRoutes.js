@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const Animals = require('../models/Animals')
 const SearchLogic = require('../public/frontendlogic/search');
 
 
@@ -37,7 +38,7 @@ router.get('/:id/', async (req, res) => {
      }
      const breedFetcher = await searchLogic.initializeBreedFetcher(type)
      console.log(type);
-     console.log(`breedFetcher is ${breedFetcher.breeds[1].name}`)
+    //  console.log(`breedFetcher is ${breedFetcher.breeds[1].name}`)
      for (let i = 0; i < breedFetcher.breeds.length; i++){
       breeds['breed'+ i] = {
         breed : breedFetcher.breeds[i].name
@@ -51,10 +52,11 @@ router.get('/:id/', async (req, res) => {
       });
     } catch (error) {
       console.error("Error fetching data:", error);
-      res.status(500).send("Internal Server Error");
+      res.status(404).render("404",{
+      loggedIn: req.session.logged_in
+      })
     }
   });
-  module.exports = router;
 
 
   router.get('/:id/:breed/', async (req, res) => {
@@ -79,7 +81,7 @@ router.get('/:id/', async (req, res) => {
         if(photos == null || undefined){
           photos = breedFetcher.animals[i].photos
           if(photos.length == 0){
-            photos = "../public/images/placeholder.jpg"
+            photos = null
           }
         }
         else{
@@ -108,8 +110,12 @@ router.get('/:id/', async (req, res) => {
       breed: breed
     });
   } catch (error) {
-      console.error("Error fetching data:", error);
-      res.status(500).send("Internal Server Error");
-    }
-
+    console.error("Error fetching data:", error);
+    res.status(404).render("404",{
+    loggedIn: req.session.logged_in
+    })
+    // res.status(500).send("Internal Server Error");
+  }
   })
+
+  module.exports = router;
