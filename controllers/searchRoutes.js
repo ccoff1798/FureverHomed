@@ -2,7 +2,7 @@ const router = require('express').Router();
 const SearchLogic = require('../public/frontendlogic/search');
 
 
-router.get('/:id', async (req, res) => {
+router.get('/:id/', async (req, res) => {
     let type = req.params.id
     type = type.replace(/"/g, '')
     const searchLogic = new SearchLogic;
@@ -55,12 +55,11 @@ router.get('/:id', async (req, res) => {
       }
      }
     //  console.log(`breedfetcher stringified ${JSON.stringify(breedFetcher)}`)
-      
-  
       res.render("searchResults", {
         loggedIn: req.session.logged_in,
         pets: pets,
-        breeds : breeds
+        breeds : breeds,
+        type: type
       });
     } catch (error) {
       // Handle the error here
