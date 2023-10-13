@@ -77,6 +77,32 @@ async function fetchByBreeds(breed, size, age, gender, ) {
         console.log(error)
     }
 };
+async function fetchById(id) {
+    const TokenFetcher = require('../../helpers/tokenFetcher');
+
+    try {
+        const tokenFetcherInstance = new TokenFetcher();
+        const tokenFetched = await tokenFetcherInstance.fetcher()
+        const url = `https://api.petfinder.com/v2/animals/${id} `
+        console.log(url)
+        const fetchRequest = await fetch(url, {
+            headers: {
+                'Authorization': 'Bearer ' + tokenFetched
+            }
+        })
+            .then(function (response) {
+                return response.json()
+            })
+            // .then(function (data) {
+            //     // sortByBreed(data)
+            //     console.log(data)
+            // })
+
+    }
+    catch (error) {
+        console.log(error)
+    }
+};
 async function fetchLocation(location, status) {
     const TokenFetcher = require('../../helpers/tokenFetcher');
 
@@ -142,6 +168,7 @@ catch (error) {
 
 // fetchTypes("Rabbit")
 // fetchBreeds("Cat")
-fetchByBreeds("French Bulldog")
+// fetchByBreeds("French Bulldog")
+fetchById('1234')
 // fetchLocation("Denver, CO",)
 // fetchRescue("Arvada, CO")
