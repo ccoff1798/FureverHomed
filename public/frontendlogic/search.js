@@ -1,4 +1,4 @@
-const fetchByAnimals = require('../../controllers/api/fetchRoutes')
+const {fetchByAnimals, fetchBreeds} = require('../../controllers/api/fetchRoutes')
 const location = 'CO'//hardcoded location
 
 class SearchLogic {
@@ -17,6 +17,17 @@ class SearchLogic {
             console.log(error);
             throw error; 
         }
+    }
+    async initializeBreedFetcher(animalType){
+        try {
+            console.log(`fetching type`)
+        const fetcher = await fetchBreeds(animalType)
+        return fetcher
+        } catch (error) {
+          console.log(error)  
+          throw error;
+        }
+        
     }
 }
 

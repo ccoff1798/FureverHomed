@@ -1,21 +1,27 @@
+<select name="breeds" id="breeds">
+    {{#each breeds}}
+    <option value="{{breed}}">{{breed}}</option>
+    {{/each}}
+
+</select>
 <section>
     Check out these pets!
     <div>
-    <ul class="cards">
-    {{#each pets}}
-    {{#isEqual this.imageUrl null}}
-    <img src="../public/images/placeholder.jpg" alt="Placeholder failed to load" width="256" height="256">
-    {{else}}
-    <img src="{{this.imageUrl}}" alt="placeholder" width="256" height="256">
-    {{/isEqual}}
-    <li>{{this.name}}</li>
-     {{#isEqual this.description null}}
-     <li>This Furry Friend is a new addition, sit tight while we try to put this bundle of joy into words</li>
-     {{else}}
-    <li>{{this.description}}</li>
-    {{/isEqual}}
-    <li>{{this.type}}</li>
-    {{/each}}
-    </ul>
+        <ul class="cards">
+            {{#each pets}}
+            {{#isEqual this.imageUrl null}}
+            <img src="../public/images/placeholder.jpg" alt="Placeholder failed to load" width="256" height="256">
+            {{else}}
+            <img src="{{this.imageUrl}}" alt="placeholder" width="256" height="256">
+            {{/isEqual}}
+            <li>{{this.name}}</li>
+            {{#isEqual this.description null}}
+            <li>This Furry Friend is a new addition, sit tight while we try to put this bundle of joy into words</li>
+            {{else}}
+            <li>{{this.description}}</li>
+            {{/isEqual}}
+            <li>{{this.type}}</li>
+            {{/each}}
+        </ul>
     </div>
 </section>

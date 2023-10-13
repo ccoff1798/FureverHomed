@@ -10,11 +10,16 @@ router.get('/:id', async (req, res) => {
     
     try {
       console.log(`search route type ${type}`)
-      const searchFetcher = await searchLogic.initializeFetcher(type);
+      const searchFetcher = await searchLogic.initializeFetcher(type)
+     
       // console.log(type)
-      console.log(searchFetcher)
+      console.log(`this is ${searchFetcher}`)
+      
     //   const parsedArray = searchFetcher.map(item => JSON.parse(item));
-  
+      const breeds = {}
+      // for (let i = 0; i < breedFetcher.length; i++){
+
+      // }
       const pets = {};
       // console.log(`This is what I am console Logging${searchFetcher.animals}`)
       if (searchFetcher && searchFetcher.animals) {
@@ -30,7 +35,7 @@ router.get('/:id', async (req, res) => {
         else{
          photos = searchFetcher.animals[i].primary_photo_cropped.full
         }
-        console.log(photos)
+        // console.log(photos)
           pets['pet' + i] = {
               id: searchFetcher.animals[i].id,
               name: searchFetcher.animals[i].name,
@@ -41,11 +46,21 @@ router.get('/:id', async (req, res) => {
       }} else {
         console.error("searchFetcher or searchFetcher.animals is undefined or null");
      }
+     const breedFetcher = await searchLogic.initializeBreedFetcher(type)
+     console.log(type);
+     console.log(`breedFetcher is ${breedFetcher.breeds[1].name}`)
+     for (let i = 0; i < breedFetcher.breeds.length; i++){
+      breeds['breed'+ i] = {
+        breed : breedFetcher.breeds[i].name
+      }
+     }
+    //  console.log(`breedfetcher stringified ${JSON.stringify(breedFetcher)}`)
       
   
       res.render("searchResults", {
         loggedIn: req.session.logged_in,
-        pets: pets
+        pets: pets,
+        breeds : breeds
       });
     } catch (error) {
       // Handle the error here
