@@ -1,4 +1,4 @@
-const fetchTypes = require('../../controllers/api/fetchRoutes_ copy')
+const fetchByAnimals = require('../../controllers/api/fetchRoutes')
 const location = 'CO'//hardcoded location
 
 class SearchLogic {
@@ -6,11 +6,12 @@ class SearchLogic {
         console.log("Search Logic Loaded");
     }
 
-    async initializeFetcher(type) {
+    async initializeFetcher(animalType) {
         try {
-            const fetcher = await fetchTypes(type);//hardcoded location for testing
+            console.log(`intialize fetcher type ${animalType}`)
+            const fetcher = fetchByAnimals(animalType);//hardcoded location for testing
             console.log('fetchSuccess');
-            console.log(fetcher)
+            // console.log(fetcher)
             return fetcher;
         } catch (error) {
             console.log(error);

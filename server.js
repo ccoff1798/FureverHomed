@@ -8,6 +8,7 @@ const helpers = require('./utils/helpers');
 
 const sequelize = require('./config/connection');
 const Handlebars = require('handlebars');
+
 Handlebars.registerHelper('isEqual', function(value, testValue, options) {
   if (value === testValue) {
     return options.fn(this);

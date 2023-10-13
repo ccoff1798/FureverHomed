@@ -3,6 +3,7 @@ async function fetchTypes(type) {
     const TokenFetcher = require('../../helpers/tokenFetcher');
 
     try {
+
         const tokenFetcherInstance = new TokenFetcher();
         const tokenFetched = await tokenFetcherInstance.fetcher()
         const url = `https://api.petfinder.com/v2/types/${type}`
@@ -25,7 +26,8 @@ async function fetchTypes(type) {
         console.log(error)
     }
 };
-async function fetchBreeds(type) {
+
+async function fetchByBreeds(breed, size, age, gender, ) {
     const TokenFetcher = require('../../helpers/tokenFetcher');
 
     try {
@@ -57,9 +59,9 @@ async function fetchLocation(location, status, gender) {
     try {
         const tokenFetcherInstance = new TokenFetcher();
         const tokenFetched = await tokenFetcherInstance.fetcher()
-        const url = `https://api.petfinder.com/v2/animals?${location}?status=${status}?${gender}`
+
+        const url = `https://api.petfinder.com/v2/animals?${location}?status=${status}`
         
-        console.log(url)
         const fetchRequest = await fetch(url, {
             headers: {
                 'Authorization': 'Bearer ' + tokenFetched
@@ -100,7 +102,7 @@ try {
         })
         .then(function (data) {
             // sortByBreed(data)
-            console.log(data)
+            // console.log(data)
         })
 
 }
@@ -108,13 +110,42 @@ catch (error) {
     console.log(error)
 }
 };
+
+async function fetchByAnimals(animalType) {
+    const TokenFetcher = require('../../helpers/tokenFetcher');
+    console.log("About to fetch with type:", animalType);
+
+
+    try {
+        const tokenFetcherInstance = new TokenFetcher();
+        const tokenFetched = await tokenFetcherInstance.fetcher()
+        // console.log(tokenFetched)
+        //minor url change to fetch relevent data for front end
+        const url = `https://api.petfinder.com/v2/animals?type=${animalType}`
+        // ${breed}/${location}/${rescue}`
+        console.log(url)
+        const fetchedData = await fetch(url, {
+            headers: {
+                'Authorization': 'Bearer ' + tokenFetched
+            }
+        }).then(response => response.json());
+        // console.log(fetchedData)
+        return fetchedData;
+
+    }
+    catch (error) {
+        console.log(error)
+    }
+};
+
+module.exports = fetchByAnimals , fetchByBreeds
 // function sortByBreed(data)
 //     data.forEach(element => {
 
 //     });
 
 
-fetchTypes("Rabbit")
-fetchBreeds("Cat")
-fetchLocation("Denver, CO",)
-fetchRescue("Arvada, CO")
+
+// fetchLocation("Denver, CO",)
+// fetchRescue("Arvada, CO")
+

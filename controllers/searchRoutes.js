@@ -3,39 +3,47 @@ const SearchLogic = require('../public/frontendlogic/search');
 
 
 router.get('/:id', async (req, res) => {
-    const type = req.params.id
-    const searchLogic = new SearchLogic();
+    let type = req.params.id
+    type = type.replace(/"/g, '')
+    const searchLogic = new SearchLogic;
     
     
     try {
-      const searchFetcher = await searchLogic.initializeFetcher(req.params.id);
-      console.log(type)
-      console.log(typeof searchFetcher)
+      console.log(`search route type ${type}`)
+      const searchFetcher = await searchLogic.initializeFetcher(type);
+      // console.log(type)
+      console.log(searchFetcher)
     //   const parsedArray = searchFetcher.map(item => JSON.parse(item));
   
       const pets = {};
-  
+      // console.log(`This is what I am console Logging${searchFetcher.animals}`)
+      if (searchFetcher && searchFetcher.animals) {
       for (let i = 0; i < searchFetcher.animals.length; i++) {
+        
+        let photos = searchFetcher.animals[i].primary_photo_cropped
+        if(photos == null || undefined){
+          photos = searchFetcher.animals[i].photos
+          if(photos.length == 0){
+            photos = "../public/images/placeholder.jpg"
+          }
+        }
+        else{
+         photos = searchFetcher.animals[i].primary_photo_cropped.full
+        }
+        console.log(photos)
           pets['pet' + i] = {
               id: searchFetcher.animals[i].id,
               name: searchFetcher.animals[i].name,
               type: searchFetcher.animals[i].type,
-              imageUrl: searchFetcher.animals[i].photo?.medium 
+              description: searchFetcher.animals[i].description,
+              imageUrl: photos
           };
-      }
-    //   for (let i = 0; i < parsedArray.length; i++) {
-    //     pets['pet' + i] = {
-    //         id: parsedArray[i].id,
-    //         name: parsedArray[i].name,
-    //         type: parsedArray[i].type,
-    //         imageUrl: parsedArray[i].photo?.medium 
-    //     };
-    // }
-      console.log(pets);
-  
+      }} else {
+        console.error("searchFetcher or searchFetcher.animals is undefined or null");
+     }
       
   
-      res.render("homepage", {
+      res.render("searchResults", {
         loggedIn: req.session.logged_in,
         pets: pets
       });
@@ -45,6 +53,4 @@ router.get('/:id', async (req, res) => {
       res.status(500).send("Internal Server Error");
     }
   });
-  
-
   module.exports = router;

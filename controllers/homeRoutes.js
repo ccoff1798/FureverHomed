@@ -95,8 +95,8 @@ router.get('/login', (req, res) => {
 //     res.status(500).json(err);
 //   }
 // =======
-const dropDown = document.getElementById('animal_selection')
-dropDown.addEventListener('click', function(fetchTypes){
+// const dropDown = document.getElementById('animal_selection')
+// dropDown.addEventListener('click', function(fetchTypes){
 
-});
+// });
 module.exports = router;
