@@ -27,11 +27,9 @@ Animals.init(
       },
       gender: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       size: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       name: {
         type: DataTypes.STRING,
@@ -48,7 +46,6 @@ Animals.init(
       },
       contact: {
         type: DataTypes.JSON,
-        allowNull: false,
       },
       _links: {
         type: DataTypes.JSON,

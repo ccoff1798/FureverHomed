@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { User } = require('../models');
 const withAuth = require('../utils/auth');
 const HomePageLogic = require('../public/frontendlogic/homepage');
+const fetchTypes = require('../controllers/api/fetchRoutes')
 
 // Prevent non logged in users from viewing the homepage //withAuth
 // router.get('/', withAuth, async (req, res) => {
@@ -64,6 +65,16 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/login', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  if (req.session.logged_in) {
+    res.redirect('/profile');
+    return;
+  }
+
+  res.render('login');
+});
+
 // //lisatest
 // // users not logged in will be sent to home page to login. 
 // router.get('/test', withAuth, async (req, res) => {
@@ -84,5 +95,8 @@ router.get('/', async (req, res) => {
 //     res.status(500).json(err);
 //   }
 // =======
+const dropDown = document.getElementById('animal_selection')
+dropDown.addEventListener('click', function(fetchTypes){
 
+});
 module.exports = router;

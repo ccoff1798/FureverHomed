@@ -30,6 +30,14 @@
       <select name="Pick Animal" id="animal_selection">
       <option value="dog">Dog</option>
       <option value="cat">Cat</option>
+      <nav>
+        {{#if logged_in}}
+        <a href="/profile">profile</a> |
+        <button class="no-button" id="logout">logout</button>
+        {{else}}
+        <a href="/login">login</a>
+        {{/if}}
+      </nav>
     </select>
 </div>
   </header>
