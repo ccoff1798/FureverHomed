@@ -7,18 +7,18 @@ async function fetchTypes(type) {
         const tokenFetcherInstance = new TokenFetcher();
         const tokenFetched = await tokenFetcherInstance.fetcher()
         const url = `https://api.petfinder.com/v2/types/${type}`
+        console.log(url)
         const fetchRequest = await fetch(url, {
             headers: {
                 'Authorization': 'Bearer ' + tokenFetched
             }
         })
             .then(function (response) {
-                console.log(response.json)
                 return response.json()
             })
             .then(function (data) {
                 // sortByBreed(data)
-                // console.log(data)
+                console.log(data)
             })
 
     }
@@ -26,13 +26,14 @@ async function fetchTypes(type) {
         console.log(error)
     }
 };
-async function fetchBreeds(type) {
+async function fetchByBreeds(breed, size, age, gender, ) {
     const TokenFetcher = require('../../helpers/tokenFetcher');
 
     try {
         const tokenFetcherInstance = new TokenFetcher();
         const tokenFetched = await tokenFetcherInstance.fetcher()
         const url = `https://api.petfinder.com/v2/types/${type}/breeds`
+        console.log(url)
         const fetchRequest = await fetch(url, {
             headers: {
                 'Authorization': 'Bearer ' + tokenFetched
@@ -57,7 +58,7 @@ async function fetchLocation(location, status, gender) {
     try {
         const tokenFetcherInstance = new TokenFetcher();
         const tokenFetched = await tokenFetcherInstance.fetcher()
-        const url = `https://api.petfinder.com/v2/animals?${location}?status=${status}?${gender}`
+        const url = `https://api.petfinder.com/v2/animals?${location}?status=${status}`
         
         const fetchRequest = await fetch(url, {
             headers: {
