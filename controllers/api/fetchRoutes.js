@@ -51,13 +51,39 @@ async function fetchBreeds(type) {
         console.log(error)
     }
 };
-async function fetchLocation(location, status, gender) {
+async function fetchByBreeds(breed, size, age, gender, ) {
     const TokenFetcher = require('../../helpers/tokenFetcher');
 
     try {
         const tokenFetcherInstance = new TokenFetcher();
         const tokenFetched = await tokenFetcherInstance.fetcher()
-        const url = `https://api.petfinder.com/v2/animals?${location}?status=${status}?${gender}`
+        const url = `https://api.petfinder.com/v2/animals/?breed=${breed}`
+        console.log(url)
+        const fetchRequest = await fetch(url, {
+            headers: {
+                'Authorization': 'Bearer ' + tokenFetched
+            }
+        })
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (data) {
+                // sortByBreed(data)
+                console.log(data)
+            })
+
+    }
+    catch (error) {
+        console.log(error)
+    }
+};
+async function fetchLocation(location, status) {
+    const TokenFetcher = require('../../helpers/tokenFetcher');
+
+    try {
+        const tokenFetcherInstance = new TokenFetcher();
+        const tokenFetched = await tokenFetcherInstance.fetcher()
+        const url = `https://api.petfinder.com/v2/animals?${location}?status=${status}`
         
         const fetchRequest = await fetch(url, {
             headers: {
@@ -144,5 +170,6 @@ module.exports = fetchByAnimals
 
 // fetchTypes("dog")
 // fetchBreeds("Cat")
+
 // fetchLocation("Denver, CO",)
 // fetchRescue("Arvada, CO")
