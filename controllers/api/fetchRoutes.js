@@ -54,6 +54,7 @@ async function fetchBreeds(type) {
         console.log(error)
     }
 };
+
 async function fetchByBreeds(breed, size, age, gender, ) {
     const TokenFetcher = require('../../helpers/tokenFetcher');
 
@@ -86,6 +87,7 @@ async function fetchLocation(location, status, gender) {
     try {
         const tokenFetcherInstance = new TokenFetcher();
         const tokenFetched = await tokenFetcherInstance.fetcher()
+
         const url = `https://api.petfinder.com/v2/animals?${location}?status=${status}`
         
         const fetchRequest = await fetch(url, {
@@ -167,7 +169,7 @@ module.exports = {fetchByAnimals , fetchByBreeds , fetchBreeds}
 //     });
 
 
-// fetchTypes("dog")
-// fetchBreeds("Cat")
+
 // fetchLocation("Denver, CO",)
 // fetchRescue("Arvada, CO")
+
