@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, Animals } = require('../models');
 const withAuth = require('../utils/auth');
 const HomePageLogic = require('../public/frontendlogic/homepage');
 const fetchTypes = require('../controllers/api/fetchRoutes')
@@ -57,7 +57,7 @@ router.get('/', async (req, res) => {
 
     res.render("homepage", {
       loggedIn: req.session.logged_in,
-      pets: pets
+      pets: pets,
     });
   } catch (error) {
     // Handle the error here

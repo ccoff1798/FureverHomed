@@ -37,7 +37,7 @@ router.get('/:id/', async (req, res) => {
      }
      const breedFetcher = await searchLogic.initializeBreedFetcher(type)
      console.log(type);
-     console.log(`breedFetcher is ${breedFetcher.breeds[1].name}`)
+     console.log(breedFetcher)
      for (let i = 0; i < breedFetcher.breeds.length; i++){
       breeds['breed'+ i] = {
         breed : breedFetcher.breeds[i].name
@@ -72,14 +72,13 @@ router.get('/:id/', async (req, res) => {
 
     try {
       const breedFetcher = await searchLogic.initializeFetchByBreed(type, breed, location)
-      console.log(`this is breedFetcher searchby breed${breedFetcher}`)
       for (let i = 0; i < breedFetcher.animals.length; i++) {
         
         let photos = breedFetcher.animals[i].primary_photo_cropped
         if(photos == null || undefined){
           photos = breedFetcher.animals[i].photos
           if(photos.length == 0){
-            photos = "../public/images/placeholder.jpg"
+            photos = "https://c8.alamy.com/comp/EKC44N/placeholder-banner-dog-EKC44N.jpg"
           }
         }
         else{

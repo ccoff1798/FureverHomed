@@ -22,6 +22,7 @@ class SearchLogic {
         try {
             console.log(`fetching type`)
         const fetcher = fetchBreeds(animalType)
+        console.log(`BreedFetcher is pulling ${fetcher}`)
         return fetcher
         } catch (error) {
           console.log(error)  
@@ -34,6 +35,18 @@ class SearchLogic {
         try {
             console.log(`fetching type`)
         const fetcher = fetchByBreeds(animalType, animalBreed, location)
+        console.log(`this is fetcher${fetcher}`)
+        return fetcher
+        } catch (error) {
+          console.log(error)  
+          throw error;
+        }
+        
+    }
+    async initializeFetchId(id){
+        try {
+            console.log(`fetching type`)
+        const fetcher = fetchById(id)
         console.log(`this is fetcher${fetcher}`)
         return fetcher
         } catch (error) {
