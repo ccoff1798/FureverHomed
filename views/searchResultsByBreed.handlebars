@@ -52,11 +52,11 @@ function getOptions(){
             {{/each}}
         </ul>
     </div>
-     <script>
-        function seeMore(petId, event){
-   event.stopPropagation();
-   window.location.href = `/${petId}`;
-   console.log(petId)
-}
+    <script>
+        function seeMore(){
+   snagId= document.querySelector('#see_more');
+   idValue = snagId.value
+   window.location.href = `/searchByID/${idValue}`
+        }
     </script>
 </section>
