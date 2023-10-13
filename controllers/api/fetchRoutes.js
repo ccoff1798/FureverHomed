@@ -145,5 +145,9 @@ module.exports = fetchByAnimals , fetchByBreeds
 
 // fetchTypes("dog")
 // fetchBreeds("Cat")
+<<<<<<< HEAD
+=======
+
+>>>>>>> e348c83303001caf074132d5483da911f0ed6898
 // fetchLocation("Denver, CO",)
 // fetchRescue("Arvada, CO")
