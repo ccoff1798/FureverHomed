@@ -98,13 +98,13 @@ async function fetchByBreeds(type, breed, location = 'CO') {
         return fetchRequest;
 
 
-        //     }
-        //     catch (error) {
-        //         console.log(error)
-        //     }
-        // };
+            }
+            catch (error) {
+                console.log(error)
+            }
+        };
 
-        // 
+        
 
         // async function fetchLocation(location, status) {
         //     const TokenFetcher = require('../../helpers/tokenFetcher');
@@ -326,32 +326,32 @@ async function fetchByBreeds(type, breed, location = 'CO') {
         };
         // module.exports = fetchByAnimals, fetchByBreeds
 
-        async function fetchRescue(location) {
-            const TokenFetcher = require('../../helpers/tokenFetcher');
-            try {
-                const tokenFetcherInstance = new TokenFetcher();
-                const tokenFetched = await tokenFetcherInstance.fetcher()
+        // async function fetchRescue(location) {
+        //     const TokenFetcher = require('../../helpers/tokenFetcher');
+        //     try {
+        //         const tokenFetcherInstance = new TokenFetcher();
+        //         const tokenFetched = await tokenFetcherInstance.fetcher()
 
 
-                const fetchRequest = await fetch(`https://api.petfinder.com/v2/organizations?location=${location}`, {
-                    headers: {
-                        'Authorization': 'Bearer ' + tokenFetched
+        //         const fetchRequest = await fetch(`https://api.petfinder.com/v2/organizations?location=${location}`, {
+        //             headers: {
+        //                 'Authorization': 'Bearer ' + tokenFetched
 
-                    }
-                })
-                    .then(function (response) {
-                        return response.json()
-                    })
-                    .then(function (data) {
-                        // sortByBreed(data)
-                        // console.log(data)
-                    })
+        //             }
+        //         })
+        //             .then(function (response) {
+        //                 return response.json()
+        //             })
+        //             .then(function (data) {
+        //                 // sortByBreed(data)
+        //                 // console.log(data)
+        //             })
 
-            }
-            catch (error) {
-                console.log(error)
-            }
-        };
+        //     }
+        //     catch (error) {
+        //         console.log(error)
+        //     }
+        // };
 
         async function fetchByAnimals(animalType) {
             const TokenFetcher = require('../../helpers/tokenFetcher');
@@ -376,7 +376,7 @@ async function fetchByBreeds(type, breed, location = 'CO') {
             }
         };
 
-        module.exports = { fetchByAnimals, fetchByBreeds, fetchBreeds,}
+        module.exports = { fetchByAnimals, fetchByBreeds, fetchBreeds, fetchById }
 // function sortByBreed(data)
 //     data.forEach(element => {
 //     });
@@ -396,4 +396,3 @@ async function fetchByBreeds(type, breed, location = 'CO') {
 // fetchByBreeds("French Bulldog") --not working 'Body is unusable'
 // fetchLocation("Denver, CO",) --not working(?)
 // fetchRescue("Arvada, CO") --not working(?)
-

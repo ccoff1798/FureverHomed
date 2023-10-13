@@ -3,6 +3,7 @@ const { User } = require('../models');
 const withAuth = require('../utils/auth');
 const HomePageLogic = require('../public/frontendlogic/homepage');
 const fetchTypes = require('../controllers/api/fetchRoutes')
+const SearchLogic = require('../public/frontendlogic/search')
 
 // Prevent non logged in users from viewing the homepage //withAuth
 // router.get('/', withAuth, async (req, res) => {
@@ -144,6 +145,42 @@ router.get('/:id', async (req, res) => {
 
 })
 
+
+router.get('/:id', async (req, res) => {
+  let id = req.params.id;
+  const searchLogic = new SearchLogic;
+
+  try {
+    const searchFetcher = await searchLogic.initializeFetchId(id);
+    console.log(`This is the log from in Homeroutes  ${searchFetcher.animals}`);
+
+    // Use the findOrCreate method provided by Sequelize
+    const [animal, created] = await Animals.findOrCreate({
+      where: { id: searchFetcher.animal.id },
+      defaults: {
+        breeds: searchFetcher.animal.breeds,
+        colors: searchFetcher.animal.colors,
+        age: searchFetcher.animal.age,
+        gender: searchFetcher.animal.gender,
+        size: searchFetcher.animal.size,
+        name: searchFetcher.animal.name,
+        description: searchFetcher.animal.description  // Added this line
+      }
+    });
+
+    if (created) {
+      console.log('New animal was created!');
+    } else {
+      console.log('Animal already exists in the database.');
+    }
+
+    // Continue with the rest of your logic
+
+  } catch (err) {
+    console.error('Error:', err);
+    res.status(500).send('Server error');
+  }
+});
 
 // //lisatest
 // // users not logged in will be sent to home page to login. 

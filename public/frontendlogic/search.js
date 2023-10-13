@@ -1,4 +1,4 @@
-const {fetchByAnimals, fetchBreeds, fetchByBreeds} = require('../../controllers/api/fetchRoutes')
+const {fetchByAnimals, fetchBreeds, fetchByBreeds, fetchById} = require('../../controllers/api/fetchRoutes')
 const location = 'CO'//hardcoded location
 
 class SearchLogic {
