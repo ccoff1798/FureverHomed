@@ -1,0 +1,61 @@
+<label for="breeds"> Looking for a specific type of Floof?</label>
+<select name="type" id="type">
+    <option value="{{type}}">{{type}}</option>
+    <option value="default">All animals</option>
+   </select>
+<select name="breeds" id="breeds">
+    <option value="{{breed}}">{{breed}}</option>
+    <option value="default">All Floofs are Friends!</option>
+    {{#each breeds}}
+    <option value="{{breed}}">{{breed}}</option>
+    {{/each}}
+
+</select>
+<button onclick="getOptions()">GO</button>
+<script type="text/javascript">
+function getOptions(){
+   selectBreed = document.querySelector('#breeds');
+   selectType = document.querySelector('#type')
+    breed = selectBreed.value;
+    type = selectType.value
+    if(type == "default"){
+        window.location.href = '/'
+    }
+    else if(breed == "default" && type !== "default"){
+        window.location.href = `/search/${type}`
+    }
+    else{
+   window.location.href = `/search/${type}/${breed}`
+    }
+}
+
+</script>
+<section>
+    Check out these pets!
+    <div>
+        <ul class="cards">
+            {{#each pets}}
+            <button onclick="seeMore()" type="submit" value="{{id}}" id="see_more">Wanna see more about me?</button>
+            {{#isEqual this.imageUrl null}}
+            <img src="../public/images/placeholder.jpg" alt="Placeholder failed to load" width="256" height="256">
+            {{else}}
+            <img src="{{this.imageUrl}}" alt="placeholder" width="256" height="256">
+            {{/isEqual}}
+            <li>{{this.name}}</li>
+            {{#isEqual this.description null}}
+            <li>This Furry Friend is a new addition, sit tight while we try to put this bundle of joy into words</li>
+            {{else}}
+            <li>{{this.description}}</li>
+            {{/isEqual}}
+            <li>{{this.type}}</li>
+            {{/each}}
+        </ul>
+    </div>
+    <script>
+        function seeMore(){
+   snagId= document.querySelector('#see_more');
+   idValue = snagId.value
+   window.location.href = `/searchByID/${idValue}`
+        }
+    </script>
+</section>
