@@ -167,7 +167,6 @@ async function fetchByAnimals(animalType, location = "co", page = 1) {
             }
         }).then(response => response.json());
         return fetchedData;
-
     }
     catch (error) {
         console.log(error)
