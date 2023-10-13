@@ -376,7 +376,7 @@ async function fetchByBreeds(type, breed, location = 'CO') {
             }
         };
 
-        module.exports = { fetchByAnimals, fetchByBreeds, fetchBreeds, fetch }
+        module.exports = { fetchByAnimals, fetchByBreeds, fetchBreeds,}
 // function sortByBreed(data)
 //     data.forEach(element => {
 //     });
