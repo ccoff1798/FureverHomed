@@ -136,7 +136,7 @@ async function fetchByAnimals(animalType) {
     }
 };
 
-module.exports = fetchByAnimals
+module.exports = fetchByAnimals , fetchByBreeds
 // function sortByBreed(data)
 //     data.forEach(element => {
 
