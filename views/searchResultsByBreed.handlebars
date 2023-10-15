@@ -38,7 +38,7 @@ function getOptions(){
 
 
             {{#isEqual this.imageUrl null}}
-            <img src="../public/images/placeholder.jpg" alt="Placeholder failed to load" width="256" height="256">
+            <img src="https://c8.alamy.com/comp/EKC44N/placeholder-banner-dog-EKC44N.jpg" alt="Placeholder failed to load" width="256" height="256">
             {{else}}
             <img src="{{this.imageUrl}}" alt="placeholder" width="256" height="256">
             {{/isEqual}}
@@ -46,17 +46,16 @@ function getOptions(){
             {{#isEqual this.description null}}
             <li>This Furry Friend is a new addition, sit tight while we try to put this bundle of joy into words</li>
             {{else}}
-            <li>{{this.description}}</li>
+            <li>{{{this.description}}}</li>
             {{/isEqual}}
             <li>{{this.type}}</li>
             {{/each}}
         </ul>
     </div>
     <script>
-        function seeMore(){
-   snagId= document.querySelector('#see_more');
-   idValue = snagId.value
-   window.location.href = `/searchByID/${idValue}`
-        }
+        function seeMore(petId, event){
+   event.stopPropagation();
+   window.location.href = `/id/${petId}`;
+}
     </script>
 </section>

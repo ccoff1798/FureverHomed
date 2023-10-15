@@ -19,7 +19,7 @@ async function fetchBreeds(type) {
         console.log(error)
     }
 };
-async function fetchByBreeds(type, breed, location = 'CO', page = 1) {
+async function fetchByBreeds(type, breed, location, page) {
     const TokenFetcher = require('../../helpers/tokenFetcher');
     try {
         const tokenFetcherInstance = new TokenFetcher();
@@ -107,12 +107,13 @@ async function fetchById(id) {
         console.log(error)
     }
 };
-async function fetchLocation(location, status) {
+async function fetchLocation(location, status, page) {
     const TokenFetcher = require('../../helpers/tokenFetcher');
     try {
         const tokenFetcherInstance = new TokenFetcher();
         const tokenFetched = await tokenFetcherInstance.fetcher()
-        const url = `https://api.petfinder.com/v2/animals?${location}?status=${status}`
+        const url = `https://api.petfinder.com/v2/animals?location=${location}&status=${status}&page=${page}`;
+
         console.log(url)
         const fetchRequest = await fetch(url, {
             headers: {
@@ -124,6 +125,7 @@ async function fetchLocation(location, status) {
             })
             .then(function (data) {
                 console.log(data)
+                return data
             })
         return fetchRequest
     }
@@ -172,4 +174,4 @@ async function fetchByAnimals(animalType, location = "co", page = 1) {
         console.log(error)
     }
 };
-module.exports = { fetchByAnimals, fetchByBreeds, fetchBreeds, fetchById }
+module.exports = { fetchByAnimals, fetchByBreeds, fetchBreeds, fetchById, fetchLocation }

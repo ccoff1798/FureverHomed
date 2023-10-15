@@ -1,14 +1,16 @@
 const router = require('express').Router();
-const SearchLogic = require('../public/frontendlogic/search');
+const SearchLogic = require('../public/js/search');
 
 
 router.get('/:id/', async (req, res) => {
     let type = req.params.id
+    let location = req.query.location || "80022"
+    let page = req.query.page || 1
     type = type.replace(/"/g, '')
     const searchLogic = new SearchLogic;
     try {
       console.log(`search route type ${type}`)
-      const searchFetcher = await searchLogic.initializeFetcher(type)
+      const searchFetcher = await searchLogic.initializeFetcher(type, location, page)
       console.log(`this is ${searchFetcher}`)
       const breeds = {}
       const pets = {};
@@ -60,18 +62,14 @@ router.get('/:id/', async (req, res) => {
   router.get('/:id/:breed/', async (req, res) => {
     let type = req.params.id
     let breed = req.params.breed
-    let location;
-    if(req.query.location !== null){
-    location = req.query.location
-    }else{
-    location = req.body.location
-    }
+    let location = req.query.location || "80022"
+    let page = req.query.page || 1
     const searchLogic = new SearchLogic;
     const pets = {}
     const breeds ={}
 
     try {
-      const breedFetcher = await searchLogic.initializeFetchByBreed(type, breed, location)
+      const breedFetcher = await searchLogic.initializeFetchByBreed(type, breed, location, page)
       for (let i = 0; i < breedFetcher.animals.length; i++) {
         
         let photos = breedFetcher.animals[i].primary_photo_cropped

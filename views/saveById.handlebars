@@ -19,33 +19,15 @@
 <p>Description: {{{description}}}</p>
 <p>{{user_id}}</p>
 {{/isEqual}}
-<form action="/save/{{id}}" method="post">
-    <input type="submit" value="Save Animal">
-</form>
-<button onclick="saveAnimal({{id}})">Save Animal</button>
 
 {{/with}}
 <button id="redirectToURL">Want to see more about me? Click Here!</button>
   <script>
     document.getElementById("redirectToURL").addEventListener("click", function () {
-      var url = "{{url}}";  
+      var url = "{{url}}"; // Interpolate the URL variable
       window.open(url, "_blank");
     });
   </script>
-<script>
-    function saveAnimal(animalId) {
-    fetch(`/save/${animalId}`, {
-        method: 'POST'
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
 
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
-</script>
 
 </section>
