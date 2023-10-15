@@ -75,6 +75,13 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+router.get('/story'), (req, res) => {
+  
+  res.render('/contact', {
+    loggedIn: req.session.logged_in
+  })
+};
+
 // //lisatest
 // // users not logged in will be sent to home page to login. 
 // router.get('/test', withAuth, async (req, res) => {
