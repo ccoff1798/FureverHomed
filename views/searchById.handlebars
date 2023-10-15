@@ -1,0 +1,51 @@
+
+<section>
+{{#isEqual photos null}}
+    <img src="https://c8.alamy.com/comp/EKC44N/placeholder-banner-dog-EKC44N.jpg" alt="Placeholder failed to load" width="256" height="256">
+    {{else}}
+    <img src="{{photo}}" alt="placeholder" width="400" height="600">
+    {{/isEqual}}
+{{#with animal.dataValues}}
+<p>Name: {{name}}</p>
+<p>Gender: {{gender}}</p>
+{{#isEqual breeds.mixed false}}
+<p>Breed:{{breeds.primary}}</p>
+{{else}}
+<p>Breed: Mixed breed</p>
+{{/isEqual}}
+{{#isEqual description null}}
+<p>Description: We are still learning about this little guy, description coming soon!</p>
+{{else}}
+<p>Description: {{{description}}}</p>
+<p>{{user_id}}</p>
+{{/isEqual}}
+<form action="/save/{{id}}" method="post">
+    <input type="submit" value="Save Animal">
+</form>
+<button onclick="saveAnimal({{id}})">Save Animal</button>
+
+{{/with}}
+<button id="redirectToURL">Want to see more about me? Click Here!</button>
+  <script>
+    document.getElementById("redirectToURL").addEventListener("click", function () {
+      var url = "{{url}}";  
+      window.open(url, "_blank");
+    });
+  </script>
+<script>
+    function saveAnimal(animalId) {
+    fetch(`/save/${animalId}`, {
+        method: 'POST'
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+</script>
+
+</section>

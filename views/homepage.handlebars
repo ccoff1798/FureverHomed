@@ -1,10 +1,9 @@
 <label for="type"> Looking for a specific type of Floof?</label>
-<select name="type" id="type">
-    <option value="default">All animals</option>
-    <option value="dog">dog</option>
-    <option value="cat">cat</option>
-   </select>
-
+<button><select name="type" id="type">
+    <option value="default">All Animals</option>
+    <option value="dog">Dog</option>
+    <option value="cat">Cat</option>
+   </select></button>
 <button onclick="getOptions()">GO</button>
 <script type="text/javascript">
 function getOptions(){
@@ -20,18 +19,25 @@ function getOptions(){
 </script>
 <section>
     Check out these pets!
-    <div>
+       <div>
     <ul class="cards">
     {{#each pets}}
+     <button onclick="seeMore('{{id}}', event)" type="submit">Wanna see more about me?</button>
     {{#isEqual this.imageUrl undefined}}
     <img src="../public/images/placeholder.jpg" alt="Placeholder failed to load" width="256" height="256">
     {{else}}
     <img src="{{this.imageUrl}}" alt="placeholder" width="256" height="256">
     {{/isEqual}}
-    <li>{{this.id}}</li>
-    <li>{{this.name}}</li>
-    <li>{{this.type}}</li>
+    <div>{{this.id}}</div>
+    <section>{{this.name}}</section>
+    <section>{{this.type}}</section>
     {{/each}}
     </ul>
     </div>
+     <script>
+        function seeMore(petId, event){
+   event.stopPropagation();
+   window.location.href = `/id/${petId}`;
+}
+    </script>
 </section>

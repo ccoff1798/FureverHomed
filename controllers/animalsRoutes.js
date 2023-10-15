@@ -35,15 +35,21 @@ router.get('/saved-animals/:userId', async (req, res) => {
                 }
             ]
         })
-        console.log(userWithSavedAnimals)
-        const savedAnimals = userWithSavedAnimals.saved_animals.map(savedAnimal => (
-            {
-                id: savedAnimal.id,
-                animal: savedAnimal.animal.get({plain: true})
+        let animalValues = userWithSavedAnimals.dataValues.saved_animals
+        let animalArray = {}
+        for(i = 0; i < animalValues.length; i++)
+        {
+            let foundAnimal = await Animals.findByPk(animalValues[i].id)
+            let data = foundAnimal.dataValues
+            animalArray['pet' + i]={
+                animal : data
             }
-        ))
+        }
+        
         res.render('saved-animals', {
-            savedAnimals
+            loggedIn: req.session.logged_in,
+            savedAnimals : animalArray
+            
         })
         // res.status(200).json(savedAnimals)
     } catch (error) {
