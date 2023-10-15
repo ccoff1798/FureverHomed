@@ -1,6 +1,29 @@
-<h1>animalss</h1>
+<h1>All The Ones That Caught Your Eye</h1>
 {{#each savedAnimals}}
-<p>{{ this.id }}</p>
-<p>{{ this.animal.name }}</p>
+  <p>{{ this.animal.id }}</p>
+  <p>{{ this.animal.name }}</p>
+  <img src="{{ this.animal.photos }}" alt="placeholder" width="600" height="400">
+  <button onclick="seeMore('{{ this.animal.id }}', event)" type="submit">Wanna see more about me?</button>
+  <button onclick="deleteAnimal('{{ this.animal.id }}')">Back to the pound</button>
 {{/each}}
 
+<script>
+  function deleteAnimal(animalId) {
+    fetch(`/save/${animalId}`, {
+      method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      location.reload();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+
+  function seeMore(petId, event){
+    event.stopPropagation();
+    window.location.href = `/id/${petId}`;
+  }
+</script>
