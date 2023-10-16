@@ -195,6 +195,16 @@
     align-items: block;
   }
 
+.no-button {
+  height: 2%;
+  width: 20%;
+  font-size: smaller;
+  color: greenyellow;
+  background-color: black;
+  box-shadow:none;
+  padding: none;
+}
+
 
  button {
     background-color: #f5fff9;
