@@ -70,6 +70,7 @@ router.get('/:id/', async (req, res) => {
 
     try {
       const breedFetcher = await searchLogic.initializeFetchByBreed(type, breed, location, page)
+      console.log(`This is BreedFetcher ${JSON.stringify(breedFetcher)}`)
       for (let i = 0; i < breedFetcher.animals.length; i++) {
         
         let photos = breedFetcher.animals[i].primary_photo_cropped
