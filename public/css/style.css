@@ -116,6 +116,10 @@
     text-align: center;
     background-color: var(--tertiary);
   }
+
+  #breeds {
+    color: black;
+  }
   
   /* CARDS */
   .container {
@@ -269,9 +273,6 @@ section {
     text-decoration: none;
   } */
 
-  label {
-    color: black;
-  }
 
   #type {
     color: black;
