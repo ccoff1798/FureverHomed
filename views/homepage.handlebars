@@ -1,13 +1,9 @@
-<label for="type"> Looking for a specific type of Floof?</label>
+<h2><label for="type"> Looking for a specific type of Floof?<br><indent>Check out these pets!</indent></label></h2>
 <button><select name="type" id="type">
     <option value="default">All Animals</option>
     <option value="dog">Dog</option>
     <option value="cat">Cat</option>
    </select></button>
-<<<<<<< HEAD
-
-=======
->>>>>>> b0187c537bb7a867e6f26d99809bf2c7d78b068d
 <button onclick="getOptions()">GO</button>
 <script type="text/javascript">
 function getOptions(){
@@ -22,7 +18,6 @@ function getOptions(){
 }
 </script>
 <section>
-    Check out these pets!
        <div>
     <ul class="cards">
     {{#each pets}}
@@ -32,7 +27,7 @@ function getOptions(){
     {{else}}
     <img src="{{this.imageUrl}}" alt="placeholder" width="256" height="256">
     {{/isEqual}}
-    <div>{{this.id}}</div>
+    {{!-- <div>{{this.id}}</div> --}}
     <section>{{this.name}}</section>
     <section>{{this.type}}</section>
     {{/each}}

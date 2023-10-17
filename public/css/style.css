@@ -42,6 +42,12 @@
     flex-wrap: wrap;
     flex-grow: 1;
   }
+
+  label {
+    display: center;
+    font-display: center;
+    margin-bottom: 8%;
+  }
   
   aside {
     flex: 0;
@@ -114,7 +120,9 @@
   /* CARDS */
   .container {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: center;
+    /* flex-wrap: wrap; */
     max-width: 600px;
     width: 100%;
     margin: 0 auto;
@@ -126,7 +134,19 @@
     box-shadow: 1px 1px 3px 3px hsl(197, 13%, 74%);
     border-style: double;
     filter: grayscale(0.2) opacity(0.9) hue-rotate(10deg);
+    display: flex;
+    justify-content: center;
+    flex-direction: center;
   }
+
+section {
+  display: grid;
+  text-align: right;
+  font-display: wrap;
+  text-align: right;
+  float: right;
+  margin-top: 2%;
+}
 
 
 
@@ -144,6 +164,7 @@
     background-color: var(--light);
     color: var(--dark);
   }
+
   
   .menu-card {
     margin: 50px;
