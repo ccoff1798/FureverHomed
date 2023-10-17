@@ -20,9 +20,9 @@
 <p>{{user_id}}</p>
 {{/isEqual}}
 <form action="/save/{{id}}" method="post">
-    <input type="submit" value="Save Animal">
+    <button onclick="saveAnimal({{id}})">Save Animal</button>
 </form>
-<button onclick="saveAnimal({{id}})">Save Animal</button>
+{{!-- <button onclick="saveAnimal({{id}})">Save Animal</button> --}}
 
 {{/with}}
 <button id="redirectToURL">Want to see more about me? Click Here!</button>
