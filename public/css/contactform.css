@@ -74,12 +74,12 @@ textarea:focus {
   background-color: white;
 }
 .letter {
-  position: absolute;
+  position:absolute;
   left: 0;
   right: 0;
   top: 0;
   width: 30rem;
-  margin: auto;
+  margin: 2%;
   perspective: 60rem;
 }
 .side {
