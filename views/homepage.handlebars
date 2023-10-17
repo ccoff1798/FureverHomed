@@ -21,15 +21,18 @@ function getOptions(){
        <div>
     <ul class="cards">
     {{#each pets}}
-     <button onclick="seeMore('{{id}}', event)" type="submit">Wanna see more about me?</button>
+
     {{#isEqual this.imageUrl undefined}}
     <img src="../public/images/placeholder.jpg" alt="Placeholder failed to load" width="256" height="256">
     {{else}}
-    <img src="{{this.imageUrl}}" alt="placeholder" width="256" height="256">
-    {{/isEqual}}
-    {{!-- <div>{{this.id}}</div> --}}
     <section>{{this.name}}</section>
     <section>{{this.type}}</section>
+    <img src="{{this.imageUrl}}" alt="placeholder" width="256" height="256">
+    <button onclick="seeMore('{{id}}', event)" type="submit">Wanna see more about me?</button>
+    {{/isEqual}}
+    {{!-- <div>{{this.id}}</div> --}}
+    {{!-- <section>{{this.name}}</section>
+    <section>{{this.type}}</section> --}}
     {{/each}}
     </ul>
     </div>
