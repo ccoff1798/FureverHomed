@@ -9,18 +9,19 @@
         <option value="bird">Birds</option>
         <option value="horse">Horses</option>
         <option value="barnyard">Barnyard</option>
-        <option value="small%20&%20furry"> Small & Furry</option>
-        <option value="Scales%2C%20Fins%20%26%20Other">Scales, Fins, & Others</option>
     </select>
 <button onclick="getOptions()">GO</button>
-<input type="text" id="location" value="location">location</input>
-<button value="2" onclick="nextPage()" id="nextPageBtn">NEXT</button>
-<button value="2" onclick="lastPage()" id="prevPageBtn">PREV</button>
+<label for="location">Location</label>
+<input type="text" id="location" value="location"></input>
+<section id="page-button-container">
+<button onclick="lastPage()" id="prevPageBtn">PREV</button>
+<button onclick="nextPage()" id="nextPageBtn">NEXT</button>
+</section>
 <section>
     <div>
         <ul class="cards">
             {{#each pets}}
-
+      <button onclick="seeMore('{{id}}', event)" type="submit">Wanna see more about me?</button>
             {{#isEqual this.imageUrl undefined}}
             <img src="https://c8.alamy.com/comp/EKC44N/placeholder-banner-dog-EKC44N.jpg"
                 alt="Placeholder failed to load" width="256" height="256" alt="Placeholder failed to load" width="256"
@@ -38,7 +39,6 @@
         <p>{{{this.description}}}</p>
         <p>{{this.type}}</p><br>
         {{/isEqual}}
-                <button onclick="seeMore('{{id}}', event)" type="submit">Wanna see more about me?</button>
         {{/each}}
         </ul>
     </div>

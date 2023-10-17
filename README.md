@@ -7,13 +7,14 @@ FureverHomed is a website dedicated to helping our furry friends find their fore
 
  ## Table of Contents
   * [User Story](#userStory)
-  * [AcceptanceCriteria] (#acceptanceCriteria)
+  * [Acceptance Criteria](#acceptanceCriteria)
   * [Features](#features)
   * [Usage](#usage)
   * [Technologies](#technologies)
   * [License](#license)
   * [Contributing](#contributing)
   * [Questions](#questions)
+  * [Links](#links)
 
 ## User Story
 I want to be able to use one website to search between lots of different rescue orginazations for my Purrfect pet
@@ -42,19 +43,25 @@ User-friendly interface for an intuitive browsing experience.
 FureverHomed is a pet adoption application that allows users to view information about pets available for adoption. Users can browse through the profiles of different pets, learn about their characteristics, and connect with adoption centers or shelters.
 
 To get started with FureverHomed, follow these steps:
+[Link to Heroku Application](https://fureverhomed-ce9f92bca93e.herokuapp.com/)
 
 Clone the repository locally using git clone https://github.com/ccoff1798/FureverHomed.git.
-Navigate to the project directory: cd FureverHomed.
-Open the project in your preferred code editor.
-Install dependencies using npm install.
-Run the application using npm start.
 
 ## Technologies Used
 Node.js: JavaScript runtime for server-side development.
 
+Sequelize: Javascript application to allow us to use MySQL Databases for our Users information
+
 Express: Web application framework for Node.js.
 
+Handlebars: HTML Template Engine used to generate content on webpage
+
+Express-Handlebars: A way to access our formating Engine through the backend rendering
+
+Ajax: CSS formating Template
+
 [Petfinder API](https://www.petfinder.com/developers/v2/docs/#capabilities)
+
 
 # License
 <img src="https://img.shields.io/badge/license-MIT-purple.svg">
@@ -64,8 +71,15 @@ This project is licensed under the MIT License. Feel free to use, modify, and di
 We welcome contributions from the community! If you'd like to contribute to FureverHomed, please follow these steps:
 
 # Questions
-Contact
+Contact us via the contact page on the deployed application
 
+# Links
+[Link to Heroku Application](https://fureverhomed-ce9f92bca93e.herokuapp.com/)
+
+
+[Link to Github Repository](https://github.com/ccoff1798/FureverHomed.git)
+
+![Screenshot](/public/images/image_720.png)
 
 
 
