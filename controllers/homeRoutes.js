@@ -259,6 +259,7 @@ router.post('/save/:id', withAuth, async (req, res) => {
     res.status(200).json({ message: 'Animal processed successfully', wasCreated: wasCreated });
 
   } catch (error) {
+    alert('log in to save an animal')
     console.error("Error fetching data:", error);
     res.status(500).render("404", {
       loggedIn: req.session.loggedIn
@@ -307,5 +308,12 @@ router.post('/send',  async (req, res) => {
     res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
 });
+router.get('/profile', (req, res) => {
+  console.log( `req.session is${req.session}`)
+  res.render('profile', {
+    loggedIn: req.session.logged_in,
+    user_id: req.session.user_id
+  })
+})
 
 module.exports = router;
