@@ -75,12 +75,15 @@ router.get('/profile', (req, res) => {
 
 router.get('/logout', (req, res) => {
   if (!req.session.loggedIn) {
-    res.render('login')
-  }
-  req.session.logged_in = false
+    req.session.logged_in = false
+    res.render('login',{
+    loggedIn: req.session.logged_in
+    })
+  }else{
+  
   res.render('homepage', {
     loggedIn: req.session.logged_in
-  })
+  })}
 })
 
 router.get('/id/:id', async (req, res) => {
