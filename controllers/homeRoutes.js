@@ -134,32 +134,24 @@ router.get('/id/:id', async (req, res) => {
     } else {
       retrievedAnimal = animal;
     }
-
-    // console.log(animal.dataValues.photos[1].full)
     res.render('searchById', {
-      loggedIn: req.session.loggedIn,
+      loggedIn: req.session.logged_in,
       animal: animal,
       photo: photo,
       url: animalUrl
     })
-
-
-
   } catch (error) {
     console.error("Error fetching data:", error);
     res.status(404).render("404", {
       loggedIn: req.session.logged_in
     })
   }
-
 })
+
 router.get('/save/:id', withAuth, async (req, res) => {
   const searchLogic = new SearchLogic();
   console.log(`USER ID IS ${req.session.user_id}`);
-
-  // Using a more descriptive name
   let animalId = req.params.id;
-
   if (isNaN(animalId)) {
     return res.status(400).json({ message: "Invalid ID format" });
   }
@@ -223,7 +215,7 @@ router.get('/save/:id', withAuth, async (req, res) => {
 
 
     res.render('searchById', {
-      loggedIn: req.session.loggedIn,
+      loggedIn: req.session.logged_in,
       animal: retrievedAnimal,
       photo: photo,
       url: animalUrl
@@ -231,7 +223,7 @@ router.get('/save/:id', withAuth, async (req, res) => {
   } catch (error) {
     console.error("Error fetching data:", error);
     res.status(404).render("404", {
-      loggedIn: req.session.loggedIn
+      loggedIn: req.session.logged_in
     });
   }
 });
