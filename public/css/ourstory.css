@@ -19,7 +19,7 @@ body {
     background-color: #fff;
     background-image: linear-gradient(var(--lines) 0.05em, transparent 0.05em);
     background-size: 100% 2em;
-    position: relative;
+    position:fixed; /*relative*/
     box-shadow: 15px 15px 33px rgba(27, 27, 27, 0.1);
     
     &:before,
