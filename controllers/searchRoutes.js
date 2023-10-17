@@ -103,7 +103,7 @@ router.get('/:id/', async (req, res) => {
       pets: pets,
       type: type,
       breeds: breeds,
-      breed: breed
+      currentBreed: breed
     });
   } catch (error) {
       console.error("Error fetching data:", error);

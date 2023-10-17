@@ -276,14 +276,12 @@ router.delete('/save/:id', withAuth, async (req, res) => {
 });
 
 router.get('/story', (req, res) => {
-  req.session.logged_in = false
   res.render('story', {
     loggedIn: req.session.logged_in
   })
 })
 
 router.get('/contact', (req, res) => {
-  req.session.logged_in = false
   res.render('contactform', {
     loggedIn: req.session.logged_in
   })
@@ -307,7 +305,6 @@ router.post('/send',  async (req, res) => {
 });
 
 router.get('/services', (req, res) => {
-  req.session.logged_in = false
   res.render('services', {
     loggedIn: req.session.logged_in
   })
