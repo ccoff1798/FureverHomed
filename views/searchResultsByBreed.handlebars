@@ -8,7 +8,48 @@
     {{#each breeds}}
     <option value="{{breed}}">{{breed}}</option>
     {{/each}}
-
+<section>
+    <script>
+        window.onload = refreshLocation
+        function nextPage(){
+        petLocation = document.querySelector('#location')
+        pageElement = document.querySelector('#page');
+        inputedLocation = petLocation.value
+        page = pageElement.value
+       searchParams =window.location.search
+        pageParamsFirstSplit = searchParams.split('?page=')
+        pageParamsSecondSplit = pageParamsFirstSplit[1].split("&")
+       locationParams = searchParams.split('&location=')
+       currentPage = parseInt(pageParamsSecondSplit[0])
+       console.log(currentPage)
+       
+        currentLocation =locationParams[1]
+        window.location.href = `?page=${currentPage + 1}&location=${inputedLocation}`;
+        }
+        function lastPage(){
+        petLocation = document.querySelector('#location')
+        inputedLocation = petLocation.value
+        pageElement = document.querySelector('#page');
+        page = pageElement.value
+       searchParams =window.location.search
+        pageParamsFirstSplit = searchParams.split('?page=')
+        pageParamsSecondSplit = pageParamsFirstSplit[1].split("&")
+       locationParams = searchParams.split('&location=')
+       currentPage = parseInt(pageParamsSecondSplit[0])
+       currentLocation =locationParams[1]
+       console.log(currentPage)
+       if(currentPage !== 1)
+       {
+        window.location.href = `?page=${currentPage - 1}&location=${inputedLocation}`;}
+        }
+        function refreshLocation(){
+    searchParams =window.location.search
+       locationParams = searchParams.split('&location=')
+       currentLocation =locationParams[1]
+       document.getElementById("location").setAttribute('value',`${currentLocation}`);
+        }
+    </script>
+</section>
 </select>
 <button onclick="getOptions()">GO</button>
 <script type="text/javascript">
