@@ -1,0 +1,7 @@
+<button id="saved-animals" onclick="savedAnimals({{user_id}})"  >saved-animals</button>
+<script>
+    function savedAnimals(profile){
+        
+        window.location.href= `/animals/saved-animals/${profile}`
+    }
+</script>

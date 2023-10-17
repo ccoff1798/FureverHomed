@@ -4,7 +4,52 @@
     <option value="dog">Dog</option>
     <option value="cat">Cat</option>
    </select></button>
-<button onclick="getOptions()">GO</button>
+<button onclick="getOptions()" >GO</button>
+<input type="text"id="location">location
+<button value = "2" onclick="nextPage()" id = "page">NEXT</button>
+<button value = "2" onclick="lastPage()" id = "page">PREV</button>
+<section>
+    <script>
+        window.onload = refreshLocation
+        function nextPage(){
+        petLocation = document.querySelector('#location')
+        pageElement = document.querySelector('#page');
+        inputedLocation = petLocation.value
+        page = pageElement.value
+       searchParams =window.location.search
+        pageParamsFirstSplit = searchParams.split('?page=')
+        pageParamsSecondSplit = pageParamsFirstSplit[1].split("&")
+       locationParams = searchParams.split('&location=')
+       currentPage = parseInt(pageParamsSecondSplit[0])
+       console.log(currentPage)
+       
+        currentLocation =locationParams[1]
+        window.location.href = `?page=${currentPage + 1}&location=${inputedLocation}`;
+        }
+        function lastPage(){
+        petLocation = document.querySelector('#location')
+        inputedLocation = petLocation.value
+        pageElement = document.querySelector('#page');
+        page = pageElement.value
+       searchParams =window.location.search
+        pageParamsFirstSplit = searchParams.split('?page=')
+        pageParamsSecondSplit = pageParamsFirstSplit[1].split("&")
+       locationParams = searchParams.split('&location=')
+       currentPage = parseInt(pageParamsSecondSplit[0])
+       currentLocation =locationParams[1]
+       console.log(currentPage)
+       if(currentPage !== 1)
+       {
+        window.location.href = `?page=${currentPage - 1}&location=${inputedLocation}`;}
+        }
+        function refreshLocation(){
+    searchParams =window.location.search
+       locationParams = searchParams.split('&location=')
+       currentLocation =locationParams[1]
+       document.getElementById("location").setAttribute('value',`${currentLocation}`);
+        }
+    </script>
+</section>
 <script type="text/javascript">
 function getOptions(){
    selectType = document.querySelector('#type')
@@ -16,7 +61,10 @@ function getOptions(){
    window.location.href = `/search/${type}`
     }
 }
+
 </script>
+
+
 <section>
     Check out these pets!
        <div>
@@ -28,7 +76,7 @@ function getOptions(){
     {{else}}
     <img src="{{this.imageUrl}}" alt="placeholder" width="256" height="256">
     {{/isEqual}}
-    <div>{{this.id}}</div>
+    {{!-- <div>{{this.id}}</div> --}}
     <section>{{this.name}}</section>
     <section>{{this.type}}</section>
     {{/each}}
