@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,36 +8,37 @@
   <link rel="stylesheet" href="../../public/css/jass.css">
   <link rel="stylesheet" href="../../public/css/style.css">
 </head>
+
 <body>
-<header>
+  <header>
     <h1>Let us help you find your next best FURend!</h1>
-    </header>
-
-  
+  </header>
 
 
-    <!--side nav bar-->
 
-    <!-- Load an icon library -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<!-- The sidebar -->
-<div class="sidebar">
-  <a href="/"><i class="fa fa-fw fa-home"></i> Home</a>
-  <a href="/services"><i class="fa fa-fw fa-wrench"></i> Services</a>
-        {{#if loggedIn}}
-        <a href="/profile">profile</a> |
-        <a href="/logout " id="logout">logout</a>
-        {{else}}
-        <a href="/login"><i class="fa fa-fw fa-user"></i> Login</a>
-        {{/if}}
-  <a href="/story"><i class="fa fa-fw fa-book"></i> Our Story</a>
-  <a href="/contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
-</div>
+  <!--side nav bar-->
 
-<!-- Page content -->
-{{!-- <div class="content">
-      <select name="Pick Animal" id="animal_selection">
+  <!-- Load an icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- The sidebar -->
+  <div class="sidebar">
+    <a href="/"><i class="fa fa-fw fa-home"></i> Home</a>
+    <a href="/services"><i class="fa fa-fw fa-wrench"></i> Services</a>
+    {{#if loggedIn}}
+    <a href="/profile">profile</a>
+    <a href="/logout " id="logout">logout</a>
+    {{else}}
+    <a href="/login"><i class="fa fa-fw fa-user"></i> Login</a>
+    {{/if}}
+    <a href="/story"><i class="fa fa-fw fa-book"></i> Our Story</a>
+    <a href="/contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+  </div>
+
+  <!-- Page content -->
+  {{!-- <div class="content">
+    <select name="Pick Animal" id="animal_selection">
       <option value"select">select animal type</option>
       <option value="dog">Dog</option>
       <option value="cat">Cat</option> --}}
@@ -49,10 +51,11 @@
         {{/if}}
       </nav>
     </select>
-</div>
+  </div>
   </header>
   <main class="container">
     {{{body}}}
   </main>
 </body>
+
 </html>
