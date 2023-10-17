@@ -66,15 +66,11 @@ router.get('/login', (req, res) => {
 
 router.get('/profile', (req, res) => {
   // If the user is already logged in, redirect the request to another route
-  if (!req.session.logged_in) {
-    res.redirect('/login');
-    return;
-  }
-
+  console.log( `req.session is${req.session}`)
   res.render('profile', {
     loggedIn: req.session.logged_in,
-    user: req.session.user_id
-  });
+    user_id: req.session.user_id
+  })
 });
 
 router.get('/logout', (req, res) => {
@@ -309,12 +305,13 @@ router.post('/send',  async (req, res) => {
     res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
 });
-router.get('/profile', (req, res) => {
-  console.log( `req.session is${req.session}`)
-  res.render('profile', {
-    loggedIn: req.session.logged_in,
-    user_id: req.session.user_id
+
+router.get('/services', (req, res) => {
+  req.session.logged_in = false
+  res.render('services', {
+    loggedIn: req.session.logged_in
   })
 })
+
 
 module.exports = router;
