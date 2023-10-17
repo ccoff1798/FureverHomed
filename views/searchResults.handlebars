@@ -1,22 +1,56 @@
-<label for="breeds"> Looking for a specific type of Floof?</label>
+<label for="type">Looking for a specific type of Floof?</label>
 <select name="type" id="type">
-    <option value="{{type}}">{{type}}</option>
-    <option value="default">All animals</option>
-   </select>
+        <option value="{{type}}">{{type}}</option>
+        <option value="default">All Animals</option>
+        <option value="dog">Dogs</option>
+        <option value="cat">Cats</option>
+        <option value="rabbit">Rabbits</option>
+        <option value="bird">Birds</option>
+        <option value="horse">Horses</option>
+        <option value="barnyard">Barnyard</option>
+        <option value="small%20&%20furry"> Small & Furry</option>
+        <option value="Scales%2C%20Fins%20%26%20Other">Scales, Fins, & Others</option>
+    </select>
+
 <select name="breeds" id="breeds">
     <option value="default">Looking for a specific type of Floof?</option>
     {{#each breeds}}
     <option value="{{breed}}">{{breed}}</option>
     {{/each}}
-    <input type="text"id="location">location
-<button value = "2" onclick="nextPage()" id = "page">NEXT</button>
-<button value = "2" onclick="lastPage()" id = "page">PREV</button>
+</select>
+
+<input type="text" id="location"> location
+<button onclick="getOptions()">GO</button>
+
+<button value="2" onclick="nextPage()" id="nextPageBtn">NEXT</button>
+<button value="2" onclick="lastPage()" id="prevPageBtn">PREV</button>
+
 <section>
-<section>
-    <section>
-  <script>
-       window.onload = refreshLocation
-       function getLocationValue() {
+    Check out these pets!
+    <div>
+        <ul class="cards">
+            {{#each pets}}
+            <button onclick="seeMore('{{id}}', event)" type="submit">Wanna see more about me?</button>
+            {{#isEqual this.imageUrl null}}
+            <img src="../public/images/placeholder.jpg" alt="Placeholder failed to load" width="256" height="256">
+            {{else}}
+            <img src="{{this.imageUrl}}" alt="placeholder" width="256" height="256">
+            {{/isEqual}}
+            <p>{{this.name}}</p>
+            {{#isEqual this.description null}}
+            <p>This Furry Friend is a new addition, sit tight while we try to put this bundle of joy into words</p>
+            {{else}}
+            <p>{{this.description}}</p>
+            {{/isEqual}}
+            <p>{{this.type}}</p>
+            {{/each}}
+        </ul>
+    </div>
+</section>
+<script type="text/javascript">
+window.onload = refreshLocation;
+
+function getLocationValue() {
     const petLocation = document.querySelector('#location');
     const params = new URLSearchParams(window.location.search);
 
@@ -36,7 +70,6 @@ function nextPage() {
     if (isNaN(page)) {
         page = 1;
     }
-    
     window.location.href = `?page=${page + 1}&location=${location}`;
 }
 
@@ -48,66 +81,33 @@ function lastPage() {
         alert("You are on Page 1");
         return;
     }
-    
     window.location.href = `?page=${page - 1}&location=${location}`;
 }
 
+function refreshLocation() {
+    const params = new URLSearchParams(window.location.search);
+    const currentLocation = params.get("location") || "80226";
+    document.getElementById("location").setAttribute('value', currentLocation);
+}
 
-        function refreshLocation(){
-    searchParams =window.location.search
-       locationParams = searchParams.split('&location=')
-       currentLocation =locationParams[1]
-       document.getElementById("location").setAttribute('value',`${currentLocation}`);
+function getOptions() {
+        const locationValue = getLocationValue()
+         selectBreed = document.querySelector('#breeds')
+        selectType = document.querySelector('#type')
+        breed = selectBreed.value
+        type = selectType.value
+        if (type == "default") {
+            window.location.href = `/?location=${locationValue}`
         }
-    </script>
-</section>
-</select>
-<button onclick="getOptions()">GO</button>
-<script type="text/javascript">
-function getOptions(){
-   selectBreed = document.querySelector('#breeds');
-   selectType = document.querySelector('#type')
-    breed = selectBreed.value;
-    type = selectType.value
-    if(type == "default"){
-        window.location.href = '/'
-    }
-    else if(breed == "default" && type !== "default"){
-        window.location.href = `/search/${type}`
-    }
-    else{
-   window.location.href = `/search/${type}/${breed}`
-    }
+          else if(breed == "default" && type !== "default") {
+            window.location.href = `/search/${type}?location=${locationValue}`
+        }
+        else{
+   window.location.href = `/search/${type}/${breed}?location=${locationValue}`
+        }
+function seeMore(petId, event) {
+    event.stopPropagation();
+    window.location.href = `/id/${petId}`;
 }
-
+}
 </script>
-<section>
-    Check out these pets!
-    <div>
-        <ul class="cards">
-            {{#each pets}}
-            <button onclick="seeMore('{{id}}', event)" type="submit">Wanna see more about me?</button>
-
-
-            {{#isEqual this.imageUrl null}}
-            <img src="../public/images/placeholder.jpg" alt="Placeholder failed to load" width="256" height="256">
-            {{else}}
-            <img src="{{this.imageUrl}}" alt="placeholder" width="256" height="256">
-            {{/isEqual}}
-            <li>{{this.name}}</li>
-            {{#isEqual this.description null}}
-            <li>This Furry Friend is a new addition, sit tight while we try to put this bundle of joy into words</li>
-            {{else}}
-            <li>{{this.description}}</li>
-            {{/isEqual}}
-            <li>{{this.type}}</li>
-            {{/each}}
-        </ul>
-    </div>
-     <script>
-        function seeMore(petId, event){
-   event.stopPropagation();
-   window.location.href = `/id/${petId}`;
-}
-    </script>
-</section>

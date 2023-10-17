@@ -1,100 +1,111 @@
-<h2><label for="type"><indent>Check out these pets!</indent></label></h2>
-<button><select name="type" id="type">
-    <option value="default">All Animals</option>
-    <option value="dog">Dog</option>
-    <option value="cat">Cat</option>
-   </select></button>
-<button onclick="getOptions()" >GO</button>
-<input type="text"id="location" value="location">location</input>
-<button value = "2" onclick="nextPage()" id = "page">NEXT</button>
-<button value = "2" onclick="lastPage()" id = "page">PREV</button>
+<h2><label for="type">
+        <indent>Check out these pets!</indent>
+    </label></h2>
+<select name="type" id="type">
+        <option value="default">All Animals</option>
+        <option value="dog">Dogs</option>
+        <option value="cat">Cats</option>
+        <option value="rabbit">Rabbits</option>
+        <option value="bird">Birds</option>
+        <option value="horse">Horses</option>
+        <option value="barnyard">Barnyard</option>
+        <option value="small%20&%20furry"> Small & Furry</option>
+        <option value="Scales%2C%20Fins%20%26%20Other">Scales, Fins, & Others</option>
+    </select>
+<button onclick="getOptions()">GO</button>
+<input type="text" id="location" value="location">location</input>
+<button value="2" onclick="nextPage()" id="nextPageBtn">NEXT</button>
+<button value="2" onclick="lastPage()" id="prevPageBtn">PREV</button>
 <section>
-    <script>
-       window.onload = refreshLocation
-       function getLocationValue() {
-    const petLocation = document.querySelector('#location');
-    const params = new URLSearchParams(window.location.search);
+    <div>
+        <ul class="cards">
+            {{#each pets}}
 
-    if (petLocation && petLocation.value) {
-        return petLocation.value;
-    }
-    if (params.get("location")) {
-        return params.get("location");
-    }
-    return "80226";
-}
-
-function nextPage() {
-    const location = getLocationValue();
-    
-    let page = parseInt(new URLSearchParams(window.location.search).get("page"));
-    if (isNaN(page)) {
-        page = 1;
-    }
-    
-    window.location.href = `?page=${page + 1}&location=${location}`;
-}
-
-function lastPage() {
-    const location = getLocationValue();
-    
-    let page = parseInt(new URLSearchParams(window.location.search).get("page"));
-    if (isNaN(page) || page <= 1) {
-        alert("You are on Page 1");
-        return;
-    }
-    
-    window.location.href = `?page=${page - 1}&location=${location}`;
-}
-
-
-        function refreshLocation(){
-    searchParams =window.location.search
-       locationParams = searchParams.split('&location=')
-       currentLocation =locationParams[1]
-       document.getElementById("location").setAttribute('value',`${currentLocation}`);
-        }
-    </script>
-</section>
-<script type="text/javascript">
-function getOptions(){
-   selectType = document.querySelector('#type')
-    type = selectType.value
-    if(type == "default"){
-        window.location.href = '/'
-    }
-    else{
-   window.location.href = `/search/${type}`
-    }
-    
-}
-
-</script>
-
-
-<section>
-       <div>
-    <ul class="cards">
-    {{#each pets}}
-
-    {{#isEqual this.imageUrl undefined}}
-    <img src="../public/images/placeholder.jpg" alt="Placeholder failed to load" width="256" height="256">
-    {{else}}
-    <section>{{this.type}}</section><br>
-    <section><left>{{this.name}}</left></section></ul></br>
-    <img src="{{this.imageUrl}}" alt="placeholder" width="256" height="256">
-    <button onclick="seeMore('{{id}}', event)" type="submit">Wanna see more about me?</button>
-    {{/isEqual}}
-    {{!-- <div>{{this.id}}</div> --}}
-    {{!-- <section>{{this.name}}</section>
-    <section>{{this.type}}</section> --}}
-    {{/each}}
-    </ul>
+            {{#isEqual this.imageUrl undefined}}
+            <img src="https://c8.alamy.com/comp/EKC44N/placeholder-banner-dog-EKC44N.jpg"
+                alt="Placeholder failed to load" width="256" height="256" alt="Placeholder failed to load" width="256"
+                height="256">
+            {{else}}
+            <img src="{{this.imageUrl}}" alt="placeholder" width="256" height="256">
+            {{/isEqual}}
+            <p>
+                <left>{{{this.name}}}</left>
+            </p>
+        </ul></br>
+        {{#isEqual this.description null}}
+        <p>This Furry Friend is a new addition, sit tight while we try to put this bundle of joy into words</p>
+        {{else}}
+        <p>{{{this.description}}}</p>
+        <p>{{this.type}}</p><br>
+        {{/isEqual}}
+                <button onclick="seeMore('{{id}}', event)" type="submit">Wanna see more about me?</button>
+        {{/each}}
+        </ul>
     </div>
-     <script>
-        function seeMore(petId, event){
-   event.stopPropagation();
-   window.location.href = `/id/${petId}`;
-}
-    </script>
+
 </section>
+<script>
+ 
+        function seeMore(petId, event) {
+            event.stopPropagation();
+            window.location.href = `/id/${petId}`;
+        }
+        window.onload = refreshLocation
+        function getLocationValue() {
+            const petLocation = document.querySelector('#location');
+            const params = new URLSearchParams(window.location.search);
+
+            if (petLocation && petLocation.value) {
+                return petLocation.value;
+            }
+            if (params.get("location")) {
+                return params.get("location");
+            }
+            return "80226";
+        }
+
+        function nextPage() {
+            const location = getLocationValue();
+
+            let page = parseInt(new URLSearchParams(window.location.search).get("page"));
+            if (isNaN(page)) {
+                page = 1;
+            }
+
+            window.location.href = `?page=${page + 1}&location=${location}`;
+        }
+
+        function lastPage() {
+            const location = getLocationValue();
+
+            let page = parseInt(new URLSearchParams(window.location.search).get("page"));
+            if (isNaN(page) || page <= 1) {
+                alert("You are on Page 1");
+                return;
+            }
+
+            window.location.href = `?page=${page - 1}&location=${location}`;
+        }
+
+
+        function refreshLocation() {
+            const searchParams = window.location.search;
+            const params = new URLSearchParams(searchParams);
+            const currentLocation = params.get("location") || "80226";
+            document.getElementById("location").setAttribute('value', currentLocation);
+        }
+         function getOptions() {
+           const locationValue = getLocationValue()
+        selectType = document.querySelector('#type')
+        type = selectType.value
+        if (type == "default") {
+            window.location.href = `/?location=${locationValue}`
+        }
+        else {
+            window.location.href = `/search/${type}?location=${locationValue}`
+        }
+
+    }
+
+
+    </script>
