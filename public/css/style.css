@@ -139,6 +139,7 @@
     flex-direction: center;
   }
 
+
 section {
   display: grid;
   text-align: right;
@@ -147,7 +148,6 @@ section {
   float: right;
   margin-top: 2%;
 }
-
 
 
   .card {
@@ -163,6 +163,7 @@ section {
     border-width: large;
     background-color: var(--light);
     color: var(--dark);
+    align-items: left;
   }
 
   
