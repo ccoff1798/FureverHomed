@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Animals, SavedAnimal } = require('../models');
+const { User, Animals, SavedAnimal, Message } = require('../models');
 const withAuth = require('../utils/auth');
 const HomePageLogic = require('../public/js/homepage');
 const fetchTypes = require('../controllers/api/fetchRoutes')
@@ -269,10 +269,7 @@ router.post('/save/:id', withAuth, async (req, res) => {
 router.delete('/save/:id', withAuth, async (req, res) => {
   const animalId = req.params.id;
   try {
-      // Delete the animal based on the ID
-      await SavedAnimal.destroy({ where: { id: animalId } });
-      
-      // Return a successful response
+      await SavedAnimal.destroy({ where: { id: animalId } });  
       res.json({ message: 'Animal deleted successfully.' });
   } catch (error) {
       console.error("Error deleting the animal:", error);
@@ -280,71 +277,35 @@ router.delete('/save/:id', withAuth, async (req, res) => {
   }
 });
 
+router.get('/story', (req, res) => {
+  req.session.logged_in = false
+  res.render('story', {
+    loggedIn: req.session.logged_in
+  })
+})
 
+router.get('/contact', (req, res) => {
+  req.session.logged_in = false
+  res.render('contactform', {
+    loggedIn: req.session.logged_in
+  })
+})
 
+router.post('/send',  async (req, res) => {
+  try {
+    console.log(req.body)
+    const newMessage = await Message.create({
+      name: req.body.name,
+      message: req.body.message,
+      email: req.body.email, 
+    });
 
-// =======
-// const dropDown = document.getElementById('animal_selection')
-// dropDown.addEventListener('click', function(fetchTypes){
+    console.log(newMessage);
+    res.json({ success: true, data: newMessage });
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    res.status(500).json({ success: false, error: 'Internal Server Error' });
+  }
+});
 
-// router.get('/:id', async (req, res) => {
-//   let id = req.params.id;
-//   const searchLogic = new SearchLogic;
-
-//   try {
-//     const searchFetcher = await searchLogic.initializeFetchId(id);
-//     console.log(`This is the log from in Homeroutes  ${searchFetcher.animals}`);
-
-//     // Use the findOrCreate method provided by Sequelize
-//     const [animal, created] = await Animals.findOrCreate({
-//       where: { id: searchFetcher.animal.id },
-//       defaults: {
-//         breeds: searchFetcher.animal.breeds,
-//         colors: searchFetcher.animal.colors,
-//         age: searchFetcher.animal.age,
-//         gender: searchFetcher.animal.gender,
-//         size: searchFetcher.animal.size,
-//         name: searchFetcher.animal.name,
-//         description: searchFetcher.animal.description  // Added this line
-//       }
-//     });
-
-//     if (created) {
-//       console.log('New animal was created!');
-//     } else {
-//       console.log('Animal already exists in the database.');
-//     }
-
-//     // Continue with the rest of your logic
-
-//   } catch (err) {
-//     console.error('Error:', err);
-//     res.status(500).send('Server error');
-//   }
-// });
-
-// //lisatest
-// // users not logged in will be sent to home page to login. 
-// router.get('/test', withAuth, async (req, res) => {
-//   try {
-//     const userData = await User.findAll({
-//       attributes: { exclude: ['password'] },
-//       order: [['name', 'ASC']],
-//     });
-// // code below is getting user data from user logged in password is excluded above and assigned to variable 'users'
-//     const users = userData.map((project) => project.get({ plain: true }));
-// // this is rendering home page with user logged in data previously gotten above.
-//     res.render('homepage', {
-//       users,
-//       // Pass the logged in flag to the template
-//       loggedIn: req.session.logged_in,
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// =======
-// const dropDown = document.getElementById('animal_selection')
-// dropDown.addEventListener('click', function(fetchTypes){
-
-// });
 module.exports = router;

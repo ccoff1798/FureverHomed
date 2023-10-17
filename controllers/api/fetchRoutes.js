@@ -155,7 +155,7 @@ async function fetchRescue(location) {
         console.log(error)
     }
 };
-async function fetchByAnimals(animalType, location = "co", page = 1) {
+async function fetchByAnimals(animalType, location, page) {
     const TokenFetcher = require('../../helpers/tokenFetcher');
     console.log("About to fetch with type:", animalType);
     try {

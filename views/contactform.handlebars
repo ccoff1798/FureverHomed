@@ -1,0 +1,73 @@
+<head>
+  <link rel="stylesheet" href="../public/css/contactform.css">
+</head>
+
+<body>
+  <small>Leave us a message!</small>
+  <div class="wrapper centered">
+    <article class="letter">
+      <div class="side">
+        <h1>Contact us</h1>
+        <p>
+          <textarea id="message" placeholder="Your message"></textarea>
+        </p>
+      </div>
+      <div class="side">
+        <p>
+          <input id="name" type="text" placeholder="Your name">
+        </p>
+        <p>
+          <input id="email" type="email" placeholder="Your email">
+        </p>
+        <p>
+          <button onclick="sendPost()" id="sendLetter">Send</button>
+        </p>
+      </div>
+    </article>
+    <div class="envelope front"></div>
+    <div class="envelope back"></div>
+  </div>
+  <p class="result-message centered">Thanks FUR your message!</p>
+  <script>
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    function validateEmail(email) {
+      var re = /\S+@\S+\.\S+/;
+      return re.test(email);
+    }
+
+    function sendPost() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      if (!validateEmail(email)) {
+        alert("Please enter a valid email");
+        return;
+      }
+
+      fetch(`/send`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, message })
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log(data)
+          alert("We got your message, we will reach back out to you as soon as we can!");
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+
+  </script>
+</body>

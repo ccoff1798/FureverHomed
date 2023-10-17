@@ -6,10 +6,10 @@ class SearchLogic {
         console.log("Search Logic Loaded");
     }
 
-    async initializeFetcher(animalType, location = 'CO') {
+    async initializeFetcher(animalType, location) {
         try {
             console.log(`intialize fetcher type ${animalType}`)
-            const fetcher = fetchByAnimals(animalType);//hardcoded location for testing
+            const fetcher = fetchByAnimals(animalType, location, page);
             console.log('fetchSuccess');
             // console.log(fetcher)
             return fetcher;
@@ -31,10 +31,10 @@ class SearchLogic {
         
     }
 
-    async initializeFetchByBreed(animalType, animalBreed, location = 'CO'){
+    async initializeFetchByBreed(animalType, animalBreed, location, page){
         try {
             console.log(`fetching type`)
-        const fetcher = fetchByBreeds(animalType, animalBreed, location)
+        const fetcher = fetchByBreeds(animalType, animalBreed, location, page)
         console.log(`this is fetcher${fetcher}`)
         return fetcher
         } catch (error) {
