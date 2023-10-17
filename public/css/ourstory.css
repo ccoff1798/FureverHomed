@@ -3,6 +3,11 @@
     --lines: #1d97b8;
 }
 
+header {
+    display: none;
+}
+
+
 html,
 body {
     background-color: #eee;
