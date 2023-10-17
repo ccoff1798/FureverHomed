@@ -13,39 +13,46 @@
 <button value = "2" onclick="lastPage()" id = "page">PREV</button>
 <section>
 <section>
-    <script>
-        window.onload = refreshLocation
-        function nextPage(){
-        petLocation = document.querySelector('#location')
-        pageElement = document.querySelector('#page');
-        inputedLocation = petLocation.value
-        page = pageElement.value
-       searchParams =window.location.search
-        pageParamsFirstSplit = searchParams.split('?page=')
-        pageParamsSecondSplit = pageParamsFirstSplit[1].split("&")
-       locationParams = searchParams.split('&location=')
-       currentPage = parseInt(pageParamsSecondSplit[0])
-       console.log(currentPage)
-       
-        currentLocation =locationParams[1]
-        window.location.href = `?page=${currentPage + 1}&location=${inputedLocation}`;
-        }
-        function lastPage(){
-        petLocation = document.querySelector('#location')
-        inputedLocation = petLocation.value
-        pageElement = document.querySelector('#page');
-        page = pageElement.value
-       searchParams =window.location.search
-        pageParamsFirstSplit = searchParams.split('?page=')
-        pageParamsSecondSplit = pageParamsFirstSplit[1].split("&")
-       locationParams = searchParams.split('&location=')
-       currentPage = parseInt(pageParamsSecondSplit[0])
-       currentLocation =locationParams[1]
-       console.log(currentPage)
-       if(currentPage !== 1)
-       {
-        window.location.href = `?page=${currentPage - 1}&location=${inputedLocation}`;}
-        }
+   <section>
+ <script>
+       window.onload = refreshLocation
+       function getLocationValue() {
+    const petLocation = document.querySelector('#location');
+    const params = new URLSearchParams(window.location.search);
+
+    if (petLocation && petLocation.value) {
+        return petLocation.value;
+    }
+    if (params.get("location")) {
+        return params.get("location");
+    }
+    return "80226";
+}
+
+function nextPage() {
+    const location = getLocationValue();
+    
+    let page = parseInt(new URLSearchParams(window.location.search).get("page"));
+    if (isNaN(page)) {
+        page = 1;
+    }
+    
+    window.location.href = `?page=${page + 1}&location=${location}`;
+}
+
+function lastPage() {
+    const location = getLocationValue();
+    
+    let page = parseInt(new URLSearchParams(window.location.search).get("page"));
+    if (isNaN(page) || page <= 1) {
+        alert("You are on Page 1");
+        return;
+    }
+    
+    window.location.href = `?page=${page - 1}&location=${location}`;
+}
+
+
         function refreshLocation(){
     searchParams =window.location.search
        locationParams = searchParams.split('&location=')
