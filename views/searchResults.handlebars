@@ -14,8 +14,10 @@
 <input type="text" id="location"> location
 <button onclick="getOptions()">GO</button>
 
-<button value="2" onclick="nextPage()" id="nextPageBtn">NEXT</button>
-<button value="2" onclick="lastPage()" id="prevPageBtn">PREV</button>
+<section id="page-button-container">
+<button onclick="lastPage()" id="prevPageBtn">PREV</button>
+<button onclick="nextPage()" id="nextPageBtn">NEXT</button>
+</section>
 
 <section>
     Check out these pets!
@@ -97,9 +99,9 @@ function getOptions() {
         else{
    window.location.href = `/search/${type}/${breed}?location=${locationValue}`
         }
-function seeMore(petId, event) {
-    event.stopPropagation();
-    window.location.href = `/id/${petId}`;
 }
-}
+function seeMore(petId, event){
+            event.stopPropagation();
+            window.location.href = `/id/${petId}`;
+        }
 </script>
