@@ -48,12 +48,13 @@ function lastPage() {
 }
 
 
-        function refreshLocation(){
-    searchParams =window.location.search
-       locationParams = searchParams.split('&location=')
-       currentLocation =locationParams[1]
-       document.getElementById("location").setAttribute('value',`${currentLocation}`);
-        }
+       function refreshLocation(){
+    const searchParams = window.location.search;
+    const params = new URLSearchParams(searchParams);
+    const currentLocation = params.get("location") || "80226"; // Use the default "80226" if location param is missing or null
+    document.getElementById("location").setAttribute('value', currentLocation);
+}
+
     </script>
 </section>
 <script type="text/javascript">
