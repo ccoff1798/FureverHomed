@@ -120,6 +120,9 @@
   #breeds {
     color: black;
   }
+  #type {
+    color: black;
+  }
   
   /* CARDS */
   .container {
@@ -289,6 +292,9 @@ section {
   section {
     color: black;
     display: wrap;
+  }
+  option {
+    color: black;
   }
 
   
