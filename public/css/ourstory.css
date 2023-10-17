@@ -1,3 +1,6 @@
+header{
+    display: none;
+}
 :root {
     --margin-line: #941c5a;
     --lines: #1d97b8;
@@ -5,11 +8,13 @@
 
 html,
 body {
-    background-color: #eee;
+    background-color: #a9873d;
+    background-image: url('https://t4.ftcdn.net/jpg/00/73/55/25/360_F_73552568_NvMrJwYUcAKMHMZJVzR4cc2QBcQqpkj2.jpg');
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
+    margin-top: 5%;
+    margin-right: 50%;
     min-height: 100%;
 }
 
