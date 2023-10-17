@@ -273,6 +273,10 @@ section {
     text-decoration: none;
   } */
 
+  #location {
+    color: black;
+  }
+
 
   #type {
     color: black;
