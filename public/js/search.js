@@ -6,7 +6,7 @@ class SearchLogic {
         console.log("Search Logic Loaded");
     }
 
-    async initializeFetcher(animalType, location) {
+    async initializeFetcher(animalType, location, page) {
         try {
             console.log(`intialize fetcher type ${animalType}`)
             const fetcher = fetchByAnimals(animalType, location, page);
