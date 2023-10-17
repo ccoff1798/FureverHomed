@@ -34,6 +34,7 @@ router.get('/', async (req, res) => {
         id: homePageFetcher.animals[i].id,
         name: homePageFetcher.animals[i].name,
         type: homePageFetcher.animals[i].type,
+        description: homePageFetcher.animals[i].description,
         imageUrl: photos
       };
 
